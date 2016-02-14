@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Forms</title>
+<title>HMTS Login</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
@@ -31,12 +31,9 @@
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="password" type="password" value="">
 							</div>
-							<div class="checkbox">
-								<label>
-									<input name="remember" type="checkbox" value="Remember Me">Remember Me
-								</label>
-							</div>
-							<a href="index.html" class="btn btn-primary">Login</a>
+
+							<a href="index.html" class="btn btn-primary">Login</a>&nbsp;&nbsp;
+							<a href="index.html" class="btn btn-primary">Forget Password</a>
 						</fieldset>
 					</form>
 				</div>
