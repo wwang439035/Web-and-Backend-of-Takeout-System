@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <classPathEntry location="C:/Users/Wenbo/.m2/repository/mysql/mysql-connector-java/5.1.35/mysql-connector-java-5.1.35.jar" />
+
+  <context id="MYSQLTables" targetRuntime="MyBatis3">
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost/hmts_repos"
+        userId="root"
+        password="12345">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="true" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="edu.fiu.hmts.domain" targetProject="..\hmts\src">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="edu.fiu.hmts.dao.mybatis.map"  targetProject="..\hmts\src">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="edu.fiu.hmts.dao.mybatis.dao"  targetProject="..\hmts\src">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <table tableName="user" domainObjectName="User" >
+      <property name="useActualColumnNames" value="false"/>
+      <generatedKey column="user_id" sqlStatement="MySql" identity="true" />
+    </table>
+    
+    <table tableName="secquestion" domainObjectName="SecQuestion" >
+      <property name="useActualColumnNames" value="false"/>
+      <generatedKey column="sec_question_id" sqlStatement="MySql" identity="true" />
+    </table>
+    
+    <table tableName="functionrole" domainObjectName="FunctionRole" >
+      <property name="useActualColumnNames" value="false"/>
+    </table>
+    
+    <table tableName="function" domainObjectName="Function" >
+      <property name="useActualColumnNames" value="false"/>
+      <generatedKey column="user_id" sqlStatement="MySql" identity="true" />
+    </table>
+    
+    <table tableName="product" domainObjectName="Product" >
+      <property name="useActualColumnNames" value="false"/>
+      <generatedKey column="product_id" sqlStatement="MySql" identity="true" />
+    </table>
+    
+    <table tableName="selproduct" domainObjectName="SelProduct" >
+      <property name="useActualColumnNames" value="false"/>
+    </table>
+    
+    <table tableName="order" domainObjectName="Order" >
+      <property name="useActualColumnNames" value="false"/>
+      <generatedKey column="order_id" sqlStatement="MySql" identity="true" />
+    </table>
+    
+    <table tableName="orderproduct" domainObjectName="OrderProduct" >
+      <property name="useActualColumnNames" value="false"/>
+      <generatedKey column="orderproduct_id" sqlStatement="MySql" identity="true" />
+    </table>
+    
+    <table tableName="payment" domainObjectName="Payment" >
+      <property name="useActualColumnNames" value="false"/>
+      <generatedKey column="payment_id" sqlStatement="MySql" identity="true" />
+    </table>
+    
+    <table tableName="card" domainObjectName="Card" >
+      <property name="useActualColumnNames" value="false"/>
+      <generatedKey column="card_id" sqlStatement="MySql" identity="true" />
+    </table>
+
+  </context>
+</generatorConfiguration>
