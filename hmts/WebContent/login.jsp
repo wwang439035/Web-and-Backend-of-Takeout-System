@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
@@ -14,6 +15,18 @@
 <script src="js/respond.min.js"></script>
 <![endif]-->
 
+<script type="text/javascript">
+<!--
+	function login(){
+		var form = document.getElementById('Login_Form');
+		form.action = './user.do';
+		form.method = 'Post';
+		form.elements["mode"].value = 'listUsers';
+		form.submit();
+	}
+-->
+</script>
+
 </head>
 
 <body>
@@ -23,7 +36,8 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Welcome to Login Happy Meal</div>
 				<div class="panel-body">
-					<form role="form">
+					<form id="Login_Form" role="form">
+						<input type="hidden" name="mode"/>
 						<fieldset>
 							<div class="form-group">
 								<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
@@ -32,7 +46,7 @@
 								<input class="form-control" placeholder="Password" name="password" type="password" value="">
 							</div>
 
-							<a href="index.html" class="btn btn-primary">Login</a>&nbsp;&nbsp;
+							<a href="javascript:login();" class="btn btn-primary">Login</a>&nbsp;&nbsp;
 							<a href="index.html" class="btn btn-primary">Forget Password</a>&nbsp;&nbsp;
 							<a href="index.html" class="btn btn-primary">New User</a>
 						</fieldset>
