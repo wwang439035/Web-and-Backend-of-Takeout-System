@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- the application context definition for the hmts DispatcherServlet -->
+  
+  <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">  
+        <property name="mappings">  
+            <props>  
+                <prop key="user.do">UserController</prop>
+            </props>  
+        </property>  
+  </bean>  
+    
+    
+  <!-- Method name resolver -->
+  
+  <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+  	<property name="paramName" value="mode" />
+  </bean>
+
+  <bean name="UserController" class="edu.fiu.hmts.web.controller.UserController">
+  	<property name="methodNameResolver" ref="methodNameResolver" />
+  </bean>
+  
+  <bean name="UserViewController" class="edu.fiu.hmts.web.controller.UserViewController">
+  	<property name="methodNameResolver" ref="methodNameResolver" />
+  </bean>
+
+</beans>
