@@ -7,6 +7,12 @@
   <classPathEntry location="C:/Users/Wenbo/.m2/repository/mysql/mysql-connector-java/5.1.35/mysql-connector-java-5.1.35.jar" />
 
   <context id="MYSQLTables" targetRuntime="MyBatis3">
+  
+  	<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+        <property name="targetPackage" value="mybatis"/>
+        <property name="targetProject" value="..\hmts\src\main\webapp\WEB-INF"/>
+    </plugin>
+  
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
         connectionURL="jdbc:mysql://localhost/hmts_repos"
         userId="root"
@@ -26,10 +32,10 @@
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
 
-    <javaClientGenerator type="XMLMAPPER" targetPackage="edu.fiu.hmts.dao.mybatis.dao"  targetProject="..\hmts\src\main\java">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="edu.fiu.hmts.dao"  targetProject="..\hmts\src\main\java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+    
     <table tableName="user" domainObjectName="User" >
       <property name="useActualColumnNames" value="false"/>
       <generatedKey column="user_id" sqlStatement="MySql" identity="true" />
