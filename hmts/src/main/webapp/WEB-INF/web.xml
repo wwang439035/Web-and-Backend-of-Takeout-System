@@ -5,22 +5,60 @@
     version="3.0">
     <display-name>Servlet 3.0 Web Application</display-name>
   
+  
+  <!-- context -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/spring/spring-jdbc.xml
+      /WEB-INF/spring/applicationContext.xml
+    </param-value>
+  </context-param>
+  
+  <!-- servlet configuration -->
   <servlet>
-  	<servlet-name>hmts</servlet-name>
+  	<servlet-name>web</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   	<init-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/hmts-servlet.xml</param-value>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>/WEB-INF/spring/web-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>rest</servlet-name>
+  	<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+  	<init-param>
+    	<param-name>com.sun.jersey.config.property.packages</param-name>
+    	<param-value>edu.fiu.hmts.web.service</param-value>
     </init-param>
+    <init-param>
+	    <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+	    <param-value>true</param-value>
+	</init-param>
   	<load-on-startup>1</load-on-startup>
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>hmts</servlet-name>
+  	<servlet-name>web</servlet-name>
   	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>rest</servlet-name>
+  	<url-pattern>/mobile/*</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
-  	<welcome-file>login.jsp</welcome-file>
+  	<welcome-file>/WEB-INF/jsp/login.jsp</welcome-file>
   </welcome-file-list>
+
+    
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+
+    
 </web-app>
