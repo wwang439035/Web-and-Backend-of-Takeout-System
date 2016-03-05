@@ -39,7 +39,7 @@
 						<input type="hidden" name="mode"/>
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="E-mail" name="username" type="email" autofocus="">
+								<input class="form-control" placeholder="E-mail" name="username" value="${username}" type="email" autofocus="">
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="password" type="password" value="">

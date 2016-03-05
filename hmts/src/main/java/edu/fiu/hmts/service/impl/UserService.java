@@ -9,10 +9,13 @@ import org.apache.log4j.varia.NullAppender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.fiu.hmts.dao.FunctionRoleMapper;
 import edu.fiu.hmts.dao.UserMapper;
+import edu.fiu.hmts.domain.FunctionRoleExample;
+import edu.fiu.hmts.domain.FunctionRoleKey;
 import edu.fiu.hmts.domain.User;
 import edu.fiu.hmts.domain.UserExample;
-import edu.fiu.hmts.domain.UserExample.Criteria;
+import edu.fiu.hmts.domain.*;
 import edu.fiu.hmts.service.IUserService;
 
 /**
@@ -24,6 +27,10 @@ public class UserService implements IUserService {
 
 	@Autowired 
 	private UserMapper userMapper;
+	
+	@Autowired
+	private FunctionRoleMapper functionRoleMapper;
+	
 	
 	/* (non-Javadoc)
 	 * @see edu.fiu.hmts.service.IUserService#register(edu.fiu.hmts.domain.User)
@@ -51,13 +58,27 @@ public class UserService implements IUserService {
 	 */
 	@Override
 	public User login(String username, String password) {
+		String func = "";
 		UserExample userExample = new UserExample();
-		Criteria criteria = userExample.createCriteria();
+		UserExample.Criteria criteria = userExample.createCriteria();
 		criteria.andUsernameEqualTo(username);
 		criteria.andPasswordEqualTo(password);
 		List<User> userConfirm = userMapper.selectByExample(userExample);
-		if (userConfirm.size() == 0)
+		
+		if (userConfirm.size() == 0 || "3".equals(userConfirm.get(0).getRole())
+				|| "4".equals(userConfirm.get(0).getRole()))
 			return new User();
+		
+		FunctionRoleExample functionRoleExample = new FunctionRoleExample();
+		FunctionRoleExample.Criteria criteria2 = functionRoleExample.createCriteria();
+		criteria2.andRoleEqualTo(userConfirm.get(0).getRole());
+		List<FunctionRoleKey> functionRoleKeys = functionRoleMapper.selectByExample(functionRoleExample);
+		
+		for (int i = 0; i < functionRoleKeys.size(); i++){
+			func += functionRoleKeys.get(i).getFunctionId() + ",";
+		}
+		
+		userConfirm.get(0).setTag(func);
 		return userConfirm.get(0);
 	}
 
@@ -65,7 +86,7 @@ public class UserService implements IUserService {
 	 * @see edu.fiu.hmts.service.IUserService#logout(edu.fiu.hmts.domain.User)
 	 */
 	@Override
-	public boolean logout(String userid) {
+	public boolean logout(int userid) {
 		// TODO Auto-generated method stub
 		return true;
 	}

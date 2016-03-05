@@ -25,6 +25,14 @@
   	<property name="methodNameResolver" ref="methodNameResolver" />
   </bean>
   
+  <bean name="OperationController" class="edu.fiu.hmts.web.controller.OperationController">
+  	<property name="methodNameResolver" ref="methodNameResolver" />
+  </bean>
+  
+  <bean name="OperationViewController" class="edu.fiu.hmts.web.controller.OperationViewController">
+  	<property name="methodNameResolver" ref="methodNameResolver" />
+  </bean>
+  
   
   <!-- Handler Mapping -->
   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">  
@@ -32,6 +40,8 @@
             <props>  
                 <prop key="user.do">UserController</prop>
                 <prop key="userview.do">UserViewController</prop>
+                <prop key="opera.do">OperationController</prop>
+                <prop key="operaview.do">OperationViewController</prop>
             </props> 
         </property>  
   </bean>  

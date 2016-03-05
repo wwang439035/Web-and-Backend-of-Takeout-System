@@ -43,4 +43,22 @@ public class UserRestService {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+	
+	
+	@Path("/logout")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response logout(User data) {
+		try{
+			boolean res = userService.logout(data.getUserId());
+			
+			if (!res)
+				return Response.status(Status.NOT_FOUND).entity("User not found").build();
+			
+			return Response.ok("Logout Successfully", MediaType.TEXT_PLAIN).build();
+		}catch(Exception e){
+			logger.fatal(e.getMessage());
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
 }

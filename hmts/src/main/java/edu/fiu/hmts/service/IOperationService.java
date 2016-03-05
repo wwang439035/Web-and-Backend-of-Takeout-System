@@ -12,7 +12,7 @@ import edu.fiu.hmts.domain.Product;
  */
 public interface IOperationService {
 
-	public List<Product> visualizeProducts();
+	public List<Product> displayProducts();
 	
-	public boolean addProduct(Product product);
+	public void addProduct(Product product);
 }

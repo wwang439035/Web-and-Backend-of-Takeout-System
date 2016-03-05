@@ -17,9 +17,36 @@
 <script src="./js/respond.min.js"></script>
 <![endif]-->
 
+<Script type="text/javascript">
+<!--
+	function logout(){
+		var form = document.getElementById('actionform');
+		form.action = 'user.do';
+		form.method = 'Post';
+		form.elements["mode"].value = 'logout';
+		form.submit();
+	}
+
+	function visualizeProducts(){
+		var form = document.getElementById('actionform');
+		form.action = 'operaview.do';
+		form.element["mode"].value = 'displayproducts';
+		form.submit();
+	}
+-->
+</Script>
+
 </head>
 
 <body>
+	<form id="actionform">
+		<input name="mode" type="hidden" />
+		<input name="userId" type="hidden" value="${userId}" />
+		<input name="firstName" type="hidden" value="${firstName}" />
+		<input name="role" type="hidden" value="${role}" />
+		<input name="func" type="hidden" value="${func}" />
+	</form>
+	
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -32,9 +59,9 @@
 				<a class="navbar-brand" href="#"><span>Happy Meal</span>Take-out System</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> ${FirstName} <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> ${firstName},${func} <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="./user.do?mode=logout"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
+							<li><a href="javascript:logout();"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -52,7 +79,10 @@
 			<li><a href=""><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Team</a></li>
 			<li><a href=""><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Contact</a></li>
 			<li role="presentation" class="divider"></li>
-			<li><a href=""><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> User</a></li>
+			<% Object func = request.getAttribute("func");
+			if (func != null && func.toString().indexOf("3,") > -1){
+				out.print("<li id=\"usermgmnt\"><a href=\"\"><svg class=\"glyph stroked table\"><use xlink:href=\"#stroked-table\"></use></svg> User</a></li>");
+			} %>
 		</ul>
 
 	</div><!--/.sidebar-->

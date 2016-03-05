@@ -16,5 +16,5 @@ public interface IUserService {
 	
 	public User login(String username, String password);
 	
-	public boolean logout(String userid);
+	public boolean logout(int userid);
 }

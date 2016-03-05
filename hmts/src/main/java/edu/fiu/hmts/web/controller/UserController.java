@@ -8,7 +8,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import edu.fiu.hmts.domain.User;
 import edu.fiu.hmts.service.IUserService;
-import edu.fiu.hmts.service.impl.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,15 +36,25 @@ public class UserController extends MultiActionController {
 			throws Exception {
 		logger.info("User is signing in the system.");
 		
+		ModelAndView page = new ModelAndView();
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		User user = userService.login(username, password);
-		ModelAndView home = new ModelAndView("home");
-		home.addObject("UserID", user.getUserId());
-		home.addObject("Role", user.getRole());
-		home.addObject("FirstName", user.getFirstName());
-		home.addObject("Func", user.getTag());
-		return home;
+		
+		if (user.getUserId() == -1){
+			page.setViewName("login");
+			page.addObject("username", username);
+		}
+		else{
+			page.setViewName("home");
+			page.addObject("userId", user.getUserId());
+			page.addObject("role", user.getRole());
+			page.addObject("firstName", user.getFirstName());
+			page.addObject("func", user.getTag());
+		}
+
+		return page;
 	}
 	
 	
