@@ -33,7 +33,7 @@ public class OperationService implements IOperationService {
 	 * @see edu.fiu.hmts.service.IOperationService#addProduct(edu.fiu.hmts.domain.Product)
 	 */
 	@Override
-	public void addProduct(Product product) {
+	public void createProduct(Product product) {
 		// TODO Auto-generated method stub
 	}
 

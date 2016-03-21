@@ -14,5 +14,5 @@ public interface IOperationService {
 
 	public List<Product> displayProducts();
 	
-	public void addProduct(Product product);
+	public void createProduct(Product product);
 }

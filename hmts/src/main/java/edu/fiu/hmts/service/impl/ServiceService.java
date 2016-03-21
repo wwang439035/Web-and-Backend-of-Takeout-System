@@ -25,26 +25,26 @@ public class ServiceService implements IServiceService {
 	}
 
 	@Override
-	public void selectProduct(String userid, Product product) {
+	public void selectProduct(int userid, Product product) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void removeProduct(String userid) {
+	public void removeProduct(int userid, int productid) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<SelProduct> displayCart(String userid) {
+	public List<SelProduct> displayCart(int userid) {
 		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void placeOrder(String userid) {
+	public void placeOrder(int userid) {
 		// TODO Auto-generated method stub
 		
 	}

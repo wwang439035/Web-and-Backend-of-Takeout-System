@@ -47,7 +47,6 @@
 
 							<a href="javascript:login();" class="btn btn-primary">Login</a>&nbsp;&nbsp;
 							<a href="index.html" class="btn btn-primary">Forget Password</a>&nbsp;&nbsp;
-							<a href="index.html" class="btn btn-primary">New User</a>
 						</fieldset>
 					</form>
 				</div>

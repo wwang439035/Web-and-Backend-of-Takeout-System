@@ -8,8 +8,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import edu.fiu.hmts.domain.User;
 import edu.fiu.hmts.service.IUserService;
+import edu.fiu.hmts.util.servbuilder.Director;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,8 +28,7 @@ public class UserController extends MultiActionController {
 	
 	protected final Log logger = LogFactory.getLog(getClass());
 	
-	@Autowired
-	private IUserService userService;
+	private IUserService userService = (IUserService) Director.contruct("UserService");
 	
 	
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) 
@@ -68,4 +67,8 @@ public class UserController extends MultiActionController {
 		return login;
 	}
 
+	public ModelAndView register(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView register = new ModelAndView();
+		return register;
+	}
 }

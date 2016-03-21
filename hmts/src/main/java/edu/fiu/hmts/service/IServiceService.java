@@ -16,11 +16,11 @@ public interface IServiceService {
 
 	public List<Product> displayMenu();
 	
-	public void selectProduct(String userid, Product product);
+	public void selectProduct(int userid, Product product);
 	
-	public void removeProduct(String userid);
+	public void removeProduct(int userid, int productid);
 	
-	public List<SelProduct> displayCart(String userid);
+	public List<SelProduct> displayCart(int userid);
 	
-	public void placeOrder(String userid);
+	public void placeOrder(int userid);
 }

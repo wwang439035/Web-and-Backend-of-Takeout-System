@@ -5,7 +5,6 @@ package edu.fiu.hmts.service.impl;
 
 import java.util.List;
 
-import org.apache.log4j.varia.NullAppender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,10 @@ import edu.fiu.hmts.domain.FunctionRoleExample;
 import edu.fiu.hmts.domain.FunctionRoleKey;
 import edu.fiu.hmts.domain.User;
 import edu.fiu.hmts.domain.UserExample;
-import edu.fiu.hmts.domain.*;
 import edu.fiu.hmts.service.IUserService;
+import edu.fiu.hmts.util.registerstrategy.IRegister;
+import edu.fiu.hmts.util.registerstrategy.MobileRegister;
+import edu.fiu.hmts.util.registerstrategy.WebRegister;
 
 /**
  * @author Wenbo
@@ -31,26 +32,33 @@ public class UserService implements IUserService {
 	@Autowired
 	private FunctionRoleMapper functionRoleMapper;
 	
+	@Autowired
+	private IRegister webRegister;
 	
+	@Autowired
+	private IRegister mobileRegister;
+	
+	
+	@Autowired
+	public UserService(WebRegister webRegister, MobileRegister mobileRegister) {
+		this.webRegister = webRegister;
+		this.mobileRegister = mobileRegister;
+	}
+		
 	/* (non-Javadoc)
 	 * @see edu.fiu.hmts.service.IUserService#register(edu.fiu.hmts.domain.User)
 	 */
 	@Override
 	public User register(String username, String password, String firstname, 
-			String lastname, String phone, String role, int secid, String answer) {
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setFirstName(firstname);
-		user.setLastName(lastname);
-		user.setPhone(phone);
-		user.setSecQuestionId(secid);
-		user.setSecAnswer(answer);
+			String lastname, String phone, String role, int secid, String answer, int type) {
 		
-		int res = userMapper.insert(user);
-		if (res > 0)
-			return user;
-		return null;
+		User user = new User();
+		if (type == 0)
+			user = webRegister.register(username, password, firstname, lastname, "", role, -1, "");
+		else if (type == 1)
+			user = mobileRegister.register(username, password, firstname, lastname, phone, "", secid, answer);
+		
+		return user;
 	}
 
 	/* (non-Javadoc)
