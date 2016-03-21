@@ -1,10 +1,8 @@
 package edu.fiu.hmts.web.service;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -30,6 +28,34 @@ public class UserRestService {
 	
 	protected final Log logger = LogFactory.getLog(getClass());
 
+	/**
+	 * Register.
+	 *
+	 * @param data
+	 *            the data
+	 * @return the response
+	 */
+	@Path("/register")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response register(User data) {
+		try{
+			User user = userService.register(data.getUsername(), data.getPassword()
+					, data.getFirstName(), data.getLastName(), data.getPhone()
+					, data.getRole(), data.getSecQuestionId(), data.getSecAnswer()
+					, 1);
+			
+			if (user.getUserId() == null)
+				return Response.status(Status.NOT_FOUND).entity("Registration Failed").build();
+			
+			return Response.ok(user, MediaType.APPLICATION_JSON).build();
+		}catch(Exception e){
+			logger.fatal(e.getMessage());
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+	
+	
 	/**
 	 * Login.
 	 *

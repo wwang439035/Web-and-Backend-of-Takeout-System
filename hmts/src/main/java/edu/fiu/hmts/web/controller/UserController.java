@@ -96,6 +96,26 @@ public class UserController extends MultiActionController {
 	 */
 	public ModelAndView register(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView register = new ModelAndView();
-		return register;
+		try{
+			User user = userService.register(request.getParameter("Username")
+					, request.getParameter("Password")
+					, request.getParameter("FirstName")
+					, request.getParameter("LastName")
+					, request.getParameter("Phone")
+					, request.getParameter("Role")
+					, -1, "", 0);
+			
+			if (user.getUserId() == null)
+				register.setViewName("register");
+			else
+				register.setViewName("home");
+			
+			return register;
+			
+		}catch(Exception e){
+			logger.fatal(e.getMessage());
+			register.setViewName("register");
+			return register;
+		}
 	}
 }

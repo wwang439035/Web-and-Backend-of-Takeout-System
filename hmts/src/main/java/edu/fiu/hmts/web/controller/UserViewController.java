@@ -48,4 +48,22 @@ public class UserViewController extends MultiActionController {
 		ModelAndView loginView = new ModelAndView("login");
 		return loginView;
 	}
+	
+	/**
+	 * Open order info.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 * @throws Exception
+	 *             the exception
+	 */
+	public ModelAndView openOrderInfo(HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
+		logger.info("Open a Order Info page.");
+		ModelAndView loginView = new ModelAndView("orderinfo");
+		return loginView;
+	}
 }
