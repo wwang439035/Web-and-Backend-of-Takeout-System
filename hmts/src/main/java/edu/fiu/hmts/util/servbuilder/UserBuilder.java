@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 import edu.fiu.hmts.service.IUserService;
 
 /**
- * @author Wenbo
- *
+ * The Class UserBuilder.
  */
 @Service
 @Configurable
@@ -19,7 +18,12 @@ public class UserBuilder implements IBuilder {
 	@Autowired
 	IUserService userService;
 
-	public IUserService get() {
+	/**
+	 * Gets the builder.
+	 *
+	 * @return the builder
+	 */
+	public IUserService getBuilder() {
 		return userService;
 	}
 }

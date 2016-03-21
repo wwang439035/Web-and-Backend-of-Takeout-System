@@ -18,6 +18,9 @@ import com.sun.jersey.api.spring.Autowire;
 import edu.fiu.hmts.domain.User;
 import edu.fiu.hmts.service.IUserService;
 
+/**
+ * The Class UserRestService.
+ */
 @Autowire
 @Path("/userservice")
 public class UserRestService {
@@ -27,6 +30,13 @@ public class UserRestService {
 	
 	protected final Log logger = LogFactory.getLog(getClass());
 
+	/**
+	 * Login.
+	 *
+	 * @param data
+	 *            the data
+	 * @return the response
+	 */
 	@Path("/login")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -45,6 +55,13 @@ public class UserRestService {
 	}
 	
 	
+	/**
+	 * Logout.
+	 *
+	 * @param data
+	 *            the data
+	 * @return the response
+	 */
 	@Path("/logout")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -4,9 +4,14 @@
 package edu.fiu.hmts.util.servbuilder;
 
 /**
- * @author Wenbo
- *
+ * The Interface IBuilder.
  */
 public interface IBuilder {
-	public Object get();
+	
+	/**
+	 * Gets the builder.
+	 *
+	 * @return the builder
+	 */
+	public Object getBuilder();
 }

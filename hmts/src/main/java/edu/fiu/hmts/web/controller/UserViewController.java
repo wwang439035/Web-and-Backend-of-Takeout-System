@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.fiu.hmts.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +8,22 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 /**
- * @author Wenbo
- *
+ * The Class UserViewController.
  */
 @Controller
 public class UserViewController extends MultiActionController {
 
+	/**
+	 * Open registration.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 * @throws Exception
+	 *             the exception
+	 */
 	public ModelAndView openRegistration(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		logger.info("Open a registration page of staff.");
@@ -24,6 +31,17 @@ public class UserViewController extends MultiActionController {
 		return registerpage;
 	}
 	
+	/**
+	 * Open login.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 * @throws Exception
+	 *             the exception
+	 */
 	public ModelAndView openLogin(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		logger.info("Open a Login page.");

@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * @author Wenbo
- *
+ * The Class Director.
  */
 @Service
 public class Director {
@@ -23,6 +22,16 @@ public class Director {
 	@Autowired
 	private static IBuilder servBuilder;
 
+	/**
+	 * Instantiates a new director.
+	 *
+	 * @param userBuilder
+	 *            the user builder
+	 * @param operaBuilder
+	 *            the opera builder
+	 * @param servBuilder
+	 *            the serv builder
+	 */
 	@SuppressWarnings("static-access")
 	@Autowired
 	public Director(UserBuilder userBuilder, OperationBuilder operaBuilder
@@ -32,14 +41,21 @@ public class Director {
 		this.servBuilder = servBuilder;
 	}
 	
+	/**
+	 * Contruct.
+	 *
+	 * @param classtype
+	 *            the classtype
+	 * @return the object
+	 */
 	public static Object contruct(String classtype) {
 		switch (classtype) {
 		case "UserService":
-			return userBuilder.get();
+			return userBuilder.getBuilder();
 		case "OperationService":
-			return operaBuilder.get();
+			return operaBuilder.getBuilder();
 		case "ServiceService":
-			return servBuilder.get();
+			return servBuilder.getBuilder();
 		default:
 			return null;
 		}

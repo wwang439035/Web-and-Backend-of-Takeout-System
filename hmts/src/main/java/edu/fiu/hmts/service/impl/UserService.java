@@ -20,8 +20,7 @@ import edu.fiu.hmts.util.registerstrategy.MobileRegister;
 import edu.fiu.hmts.util.registerstrategy.WebRegister;
 
 /**
- * @author Wenbo
- *
+ * The Class UserService.
  */
 @Service
 public class UserService implements IUserService {
@@ -39,12 +38,43 @@ public class UserService implements IUserService {
 	private IRegister mobileRegister;
 	
 	
+	/**
+	 * Instantiates a new user service.
+	 *
+	 * @param webRegister
+	 *            the web register
+	 * @param mobileRegister
+	 *            the mobile register
+	 */
 	@Autowired
 	public UserService(WebRegister webRegister, MobileRegister mobileRegister) {
 		this.webRegister = webRegister;
 		this.mobileRegister = mobileRegister;
 	}
 		
+	/**
+	 * Register.
+	 *
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 * @param firstname
+	 *            the firstname
+	 * @param lastname
+	 *            the lastname
+	 * @param phone
+	 *            the phone
+	 * @param role
+	 *            the role
+	 * @param secid
+	 *            the secid
+	 * @param answer
+	 *            the answer
+	 * @param type
+	 *            the type
+	 * @return the user
+	 */
 	/* (non-Javadoc)
 	 * @see edu.fiu.hmts.service.IUserService#register(edu.fiu.hmts.domain.User)
 	 */
@@ -61,6 +91,15 @@ public class UserService implements IUserService {
 		return user;
 	}
 
+	/**
+	 * Login.
+	 *
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 * @return the user
+	 */
 	/* (non-Javadoc)
 	 * @see edu.fiu.hmts.service.IUserService#login(edu.fiu.hmts.domain.User, java.lang.String)
 	 */
@@ -90,6 +129,13 @@ public class UserService implements IUserService {
 		return userConfirm.get(0);
 	}
 
+	/**
+	 * Logout.
+	 *
+	 * @param userid
+	 *            the userid
+	 * @return true, if successful
+	 */
 	/* (non-Javadoc)
 	 * @see edu.fiu.hmts.service.IUserService#logout(edu.fiu.hmts.domain.User)
 	 */

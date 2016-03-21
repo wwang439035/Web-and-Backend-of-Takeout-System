@@ -11,17 +11,20 @@ import edu.fiu.hmts.dao.ProductMapper;
 import edu.fiu.hmts.domain.Product;
 import edu.fiu.hmts.service.IOperationService;
 
+
 /**
- * @author Wenbo
- *
+ * The Class OperationService.
  */
 @Service
 public class OperationService implements IOperationService {
 
 	private ProductMapper productMapper;
 	
-	/* (non-Javadoc)
-	 * @see edu.fiu.hmts.service.IOperationService#visualizeProducts()
+	
+	/**
+	 * Display the products.
+	 *
+	 * @return the list
 	 */
 	@Override
 	public List<Product> displayProducts() {
@@ -29,8 +32,11 @@ public class OperationService implements IOperationService {
 		return products;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.fiu.hmts.service.IOperationService#addProduct(edu.fiu.hmts.domain.Product)
+	/**
+	 * Creates the product.
+	 *
+	 * @param product
+	 *            the product
 	 */
 	@Override
 	public void createProduct(Product product) {

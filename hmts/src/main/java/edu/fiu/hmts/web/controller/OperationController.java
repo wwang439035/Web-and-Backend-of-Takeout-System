@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.fiu.hmts.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +13,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import edu.fiu.hmts.service.IOperationService;
 
 /**
- * @author Wenbo
- *
+ * The Class OperationController.
  */
 @Controller
 public class OperationController extends MultiActionController {
@@ -27,6 +23,15 @@ public class OperationController extends MultiActionController {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 	
+	/**
+	 * Display the products.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 */
 	public ModelAndView displayProducts(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("Show product list");
 		ModelAndView productList = new ModelAndView();

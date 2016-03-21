@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 import edu.fiu.hmts.service.IOperationService;
 
 /**
- * @author Wenbo
- *
+ * The Class OperationBuilder.
  */
 @Service
 @Configurable
@@ -19,7 +18,12 @@ public class OperationBuilder implements IBuilder{
 	@Autowired
 	IOperationService operaService;
 	
-	public IOperationService get() {
+	/**
+	 * Gets the builder.
+	 *
+	 * @return the builder
+	 */
+	public IOperationService getBuilder() {
 		return operaService;
 	}
 }

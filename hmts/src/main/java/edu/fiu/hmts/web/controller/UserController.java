@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.fiu.hmts.web.controller;
 
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
@@ -20,8 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * @author Wenbo
- *
+ * The Class UserController.
  */
 @Controller
 public class UserController extends MultiActionController {
@@ -31,6 +27,17 @@ public class UserController extends MultiActionController {
 	private IUserService userService = (IUserService) Director.contruct("UserService");
 	
 	
+	/**
+	 * Login.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 * @throws Exception
+	 *             the exception
+	 */
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		logger.info("User is signing in the system.");
@@ -57,6 +64,17 @@ public class UserController extends MultiActionController {
 	}
 	
 	
+	/**
+	 * Logout.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 * @throws Exception
+	 *             the exception
+	 */
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		logger.info("User is signing out the system");
@@ -67,6 +85,15 @@ public class UserController extends MultiActionController {
 		return login;
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 */
 	public ModelAndView register(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView register = new ModelAndView();
 		return register;
