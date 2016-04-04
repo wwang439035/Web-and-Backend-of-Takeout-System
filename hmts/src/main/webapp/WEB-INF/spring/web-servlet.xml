@@ -21,15 +21,11 @@
   	<property name="methodNameResolver" ref="methodNameResolver" />
   </bean>
   
-  <bean name="UserViewController" class="edu.fiu.hmts.web.controller.UserViewController">
-  	<property name="methodNameResolver" ref="methodNameResolver" />
-  </bean>
-  
   <bean name="OperationController" class="edu.fiu.hmts.web.controller.OperationController">
   	<property name="methodNameResolver" ref="methodNameResolver" />
   </bean>
   
-  <bean name="OperationViewController" class="edu.fiu.hmts.web.controller.OperationViewController">
+  <bean name="FrontController" class="edu.fiu.hmts.web.controller.FrontController">
   	<property name="methodNameResolver" ref="methodNameResolver" />
   </bean>
   
@@ -39,9 +35,8 @@
         <property name="mappings">  
             <props>  
                 <prop key="user.do">UserController</prop>
-                <prop key="userview.do">UserViewController</prop>
-                <prop key="opera.do">OperationController</prop>
-                <prop key="operaview.do">OperationViewController</prop>
+                <prop key="operation.do">OperationController</prop>
+                <prop key="front.do">FrontController</prop>
             </props> 
         </property>  
   </bean>  
