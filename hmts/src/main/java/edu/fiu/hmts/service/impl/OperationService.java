@@ -5,10 +5,12 @@ package edu.fiu.hmts.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.fiu.hmts.dao.ProductMapper;
 import edu.fiu.hmts.domain.Product;
+import edu.fiu.hmts.domain.ProductExample;
 import edu.fiu.hmts.service.IOperationService;
 
 
@@ -18,6 +20,7 @@ import edu.fiu.hmts.service.IOperationService;
 @Service
 public class OperationService implements IOperationService {
 
+	@Autowired
 	private ProductMapper productMapper;
 	
 	
@@ -28,7 +31,7 @@ public class OperationService implements IOperationService {
 	 */
 	@Override
 	public List<Product> displayProducts() {
-		List<Product> products = productMapper.selectByExample(null);
+		List<Product> products = productMapper.selectByExample(new ProductExample());
 		return products;
 	}
 
@@ -39,8 +42,9 @@ public class OperationService implements IOperationService {
 	 *            the product
 	 */
 	@Override
-	public void createProduct(Product product) {
-		// TODO Auto-generated method stub
+	public int createProduct(Product product) {
+		int res = productMapper.insert(product);
+		return res;
 	}
 
 }

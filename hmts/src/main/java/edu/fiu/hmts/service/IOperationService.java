@@ -24,5 +24,5 @@ public interface IOperationService {
 	 * @param product
 	 *            the product
 	 */
-	public void createProduct(Product product);
+	public int createProduct(Product product);
 }

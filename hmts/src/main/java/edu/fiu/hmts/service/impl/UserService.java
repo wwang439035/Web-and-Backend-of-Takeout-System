@@ -12,6 +12,8 @@ import edu.fiu.hmts.dao.FunctionRoleMapper;
 import edu.fiu.hmts.dao.UserMapper;
 import edu.fiu.hmts.domain.FunctionRoleExample;
 import edu.fiu.hmts.domain.FunctionRoleKey;
+import edu.fiu.hmts.domain.Product;
+import edu.fiu.hmts.domain.ProductExample;
 import edu.fiu.hmts.domain.User;
 import edu.fiu.hmts.domain.UserExample;
 import edu.fiu.hmts.service.IUserService;
@@ -116,14 +118,7 @@ public class UserService implements IUserService {
 				|| "4".equals(userConfirm.get(0).getRole()))
 			return new User();
 		
-		FunctionRoleExample functionRoleExample = new FunctionRoleExample();
-		FunctionRoleExample.Criteria criteria2 = functionRoleExample.createCriteria();
-		criteria2.andRoleEqualTo(userConfirm.get(0).getRole());
-		List<FunctionRoleKey> functionRoleKeys = functionRoleMapper.selectByExample(functionRoleExample);
-		
-		for (int i = 0; i < functionRoleKeys.size(); i++){
-			func += functionRoleKeys.get(i).getFunctionId() + ",";
-		}
+		func = rolesControl(userConfirm.get(0));
 		
 		userConfirm.get(0).setTag(func);
 		return userConfirm.get(0);
@@ -145,8 +140,35 @@ public class UserService implements IUserService {
 		return true;
 	}
 	
-	protected String rolesControl(int userid) {
-		return null;
+	/**
+	 * Roles control.
+	 *
+	 * @param user
+	 *            the user
+	 * @return the string
+	 */
+	protected String rolesControl(User user) {
+		String func = "";
+		FunctionRoleExample functionRoleExample = new FunctionRoleExample();
+		FunctionRoleExample.Criteria criteria2 = functionRoleExample.createCriteria();
+		criteria2.andRoleEqualTo(user.getRole());
+		List<FunctionRoleKey> functionRoleKeys = functionRoleMapper.selectByExample(functionRoleExample);
+		
+		for (int i = 0; i < functionRoleKeys.size(); i++){
+			func += functionRoleKeys.get(i).getFunctionId() + ",";
+		}
+		return func;
+	}
+
+	/**
+	 * Display the users.
+	 *
+	 * @return the list
+	 */
+	@Override
+	public List<User> displayUsers() {
+		List<User> users = userMapper.selectByExample(new UserExample());
+		return users;
 	}
 
 }

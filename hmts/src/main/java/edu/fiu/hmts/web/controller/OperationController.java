@@ -1,15 +1,20 @@
 package edu.fiu.hmts.web.controller;
 
+import java.util.List;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import edu.fiu.hmts.domain.Product;
 import edu.fiu.hmts.service.IOperationService;
 
 /**
@@ -34,20 +39,66 @@ public class OperationController extends MultiActionController {
 	 */
 	public ModelAndView displayProducts(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("Show product list");
-		ModelAndView productList = new ModelAndView();
-		
+
 		try{
+			List<Product> proList = operaService.displayProducts();
+			String object = JSONObject.valueToString(proList);
 			
+			ModelAndView productView = new ModelAndView();
+			productView.setViewName("products");
+			productView.addObject("proList", object);
+			productView.addObject("userId", request.getParameter("userId"));
+			productView.addObject("role", request.getParameter("role"));
+			productView.addObject("firstName", request.getParameter("firstName"));
+			productView.addObject("func", request.getParameter("func"));
 			
-			productList.setViewName("visualizeproducts");
-			productList.addObject("userId", request.getParameter("userId"));
-			productList.addObject("firstName", request.getParameter("userId"));
-			productList.addObject("role", request.getParameter("role"));
+			return productView;
 		}
 		catch(Exception e){
 			logger.fatal(e.getMessage());
+			return new ModelAndView();
 		}
-		
-		return productList;
+	}
+	
+	
+	/**
+	 * Creates the products.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 */
+	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("Create a product");
+
+		try{
+			Product product = new Product();
+			product.setName(request.getParameter("name"));
+			product.setType(request.getParameter("type"));
+			product.setPrice(Double.parseDouble(request.getParameter("price")));
+			product.setBrief(request.getParameter("brief"));
+			
+			operaService.createProduct(product);
+			
+			List<Product> proList = operaService.displayProducts();
+			
+			String object = JSONObject.valueToString(proList);
+			
+			ModelAndView productView = new ModelAndView();
+			productView.setViewName("products");
+			productView.addObject("proList", object);
+			productView.addObject("userId", request.getParameter("userId"));
+			productView.addObject("role", request.getParameter("role"));
+			productView.addObject("firstName", request.getParameter("firstName"));
+			productView.addObject("func", request.getParameter("func"));
+			
+			return productView;
+		}
+		catch(Exception e){
+			logger.fatal(e.getMessage());
+			return new ModelAndView();
+		}
 	}
 }

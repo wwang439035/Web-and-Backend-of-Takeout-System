@@ -9,25 +9,34 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sun.jersey.api.spring.Autowire;
 
 import edu.fiu.hmts.domain.User;
+import edu.fiu.hmts.service.IOperationService;
+import edu.fiu.hmts.service.IServiceService;
 import edu.fiu.hmts.service.IUserService;
 
 /**
- * The Class UserRestService.
+ * The Class MobileInterface.
  */
 @Autowire
-@Path("/userservice")
-public class UserRestService {
+@Path("/servservice")
+public class MobileInterface {
+
+	@Autowired
+	private IServiceService servservice;
 	
 	@Autowired
 	private IUserService userService;
 	
+	@Autowired
+	private IOperationService operaService;
+	
 	protected final Log logger = LogFactory.getLog(getClass());
-
+	
 	/**
 	 * Register.
 	 *
@@ -103,5 +112,106 @@ public class UserRestService {
 			logger.fatal(e.getMessage());
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+	
+	
+	/**
+	 * Display the menu.
+	 *
+	 * @param data
+	 *            the data
+	 * @return the response
+	 */
+	@Path("/displaymenu")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response displayMenu(JSONObject data) {
+		try{
+			
+		}
+		catch(Exception e){
+			
+		}
+		return null;
+	}
+	
+	/**
+	 * Query product.
+	 *
+	 * @param data
+	 *            the data
+	 * @return the response
+	 */
+	@Path("/selectProduct")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response selectProduct(JSONObject data) {
+		try{
+			
+		}
+		catch(Exception e){
+			
+		}
+		return null;
+	}
+	
+	/**
+	 * Remove product.
+	 *
+	 * @param data
+	 *            the data
+	 * @return the response
+	 */
+	@Path("/removeProduct")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response removeProduct(JSONObject data) {
+		try{
+			
+		}
+		catch(Exception e){
+			
+		}
+		return null;
+	}
+	
+	/**
+	 * Display the cart.
+	 *
+	 * @param data
+	 *            the data
+	 * @return the response
+	 */
+	@Path("/displayCart")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response displayCart(JSONObject data) {
+		try{
+			
+		}
+		catch(Exception e){
+			
+		}
+		return null;
+	}
+	
+	/**
+	 * Place order.
+	 *
+	 * @param data
+	 *            the data
+	 * @return the response
+	 */
+	@Path("/placeOrder")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response placeOrder(JSONObject data) {
+		try{
+			
+		}
+		catch(Exception e){
+			
+		}
+		return null;
 	}
 }

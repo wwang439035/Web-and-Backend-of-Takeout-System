@@ -3,6 +3,9 @@
  */
 package edu.fiu.hmts.service;
 
+import java.util.List;
+
+import edu.fiu.hmts.domain.Product;
 import edu.fiu.hmts.domain.User;
 
 /**
@@ -55,4 +58,11 @@ public interface IUserService {
 	 * @return true, if successful
 	 */
 	public boolean logout(int userid);
+	
+	/**
+	 * Display the users.
+	 *
+	 * @return the list
+	 */
+	public List<User> displayUsers();
 }
