@@ -1,72 +1,90 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ page language="java" errorPage="../jsp/error.jsp" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>New Employee Registration</title>
-</head>
-		<script src="js/jquery.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/form-elements.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="js/bootstrap.js">
-        <script src="js/bootstrap.js"></script>
-        
-<body>
- <div class="row">
-                        <div class="col-sm-5">
-                        	
-                        	<div class="form-box">
-	                        	<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Welcome Manager.</h3>
-	                            		<p>Please enter new employee registration information below:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-key"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="login-form">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="email">Email</label>
-				                        	<input type="text" name="email" placeholder="Employee Username/Email..." class="form-email form-control" id="email">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="first_name">name</label>
-				                        	<input type="text" name="first_name" placeholder="First Name..." class="form-last_name form-control" id="first_name">
-				                        </div>
-				                      	<div class="form-group">
-				                        	<label class="sr-only" for="last_name">name</label>
-				                        	<input type="text" name="last_name" placeholder="Last Name..." class="form-last_name form-control" id="last_name">
-				                        </div>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADD PRODUCT</title>
 
-				                      
-				                        <div class="dropdown">
-				                        	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Employee Role/Credentials<span class="caret"></span> </button>
-				                        	<ul class="dropdown-menu">
-				                        	<li><a href="#">Manager</a> </li>
-				                        	<li><a href="#">Staff</a> </li>
-				                        	<li><a href="#">Deliveryman</a> </li>
-				                        	</ul>
-				                         </div>
-				                         
-				                         <div class="form-group">
-				                         	<label class="sr-only" for="comments">comments</label>
-				                         	<input type="text" name="comments" placeholder="Enter any comments here..." class="form-comments form-control" id="comments">
-				                         </div>
-				                       
-				                     
-				         
-				                        <button type="submit" class="btn">Proceed</button>
-				                        
-				                        <p>
-				                        System will autogenerate password for employee</p>
-				                        
-				                    </form>
-			                    </div>
-		                    </div>
-		                    </div>
-		                    
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/styles.css" rel="stylesheet">
+
+<!--Icons-->
+<script src="js/lumino.glyphs.js"></script>
+
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+
+</head>  
+<body>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="addProductLabel">Registration</h4>
+	</div>
+	<div id="incomplete" class="alert alert-warning fade in" hidden>
+		<a href="javascript:hideAlert();" class="close" aria-label="close">&times;</a>
+		<strong>Warning!</strong> The user information is invalid.
+	</div>
+	<form id="regaction" class=form-horizontal method="post">
+		<div class="modal-body">
+			<fieldset>
+				<input name="mode" type="hidden" />
+				<input name="userId" type="hidden" value='<%=request.getParameter("userId") %>' />
+				<input name="firstName" type="hidden" value='<%=request.getParameter("firstName") %>' />
+				<input name="role" type="hidden" value='<%=request.getParameter("role") %>' />
+				<input name="func" type="hidden" value='<%=request.getParameter("func") %>' />
+
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="name">Username</label>
+					<div class="col-md-9">
+						<input id="usernameNew" name="usernameNew" type="text" placeholder="Employee Username/Email..." class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="name">First Name</label>
+					<div class="col-md-9">
+						<input id="firstNameNew" name="firstNameNew" type="text" placeholder="First Name..." class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="name">Last Name</label>
+					<div class="col-md-9">
+						<input id="lastNameNew" name="lastNameNew" type="text" placeholder="Last Name..." class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="type">Role</label>
+					<div class="col-md-9">
+						<select id="roleNew" name="roleNew" class="form-control">
+							<option>Please select</option>
+							<option>Manager</option>
+							<option>Staff</option>
+							<option>Delivery Man</option>
+						</select>
+					</div>
+				</div>
+                      
+				<!-- Form actions -->
+				<div class="modal-footer col-lg-12" align="right">
+					<button type="reset" class="btn btn-default">Reset</button>
+					<button type="button" class="btn btn-primary" onclick="register()">Register</button>
+				</div>
+			</fieldset>
+		</div>
+	</form>	
+	<script src="./js/home.js"></script>
+	<script>
+		$(window).on('resize', function () {
+		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function () {
+		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		})
+	</script>
 </body>
 </html>

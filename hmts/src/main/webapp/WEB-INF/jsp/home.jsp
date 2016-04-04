@@ -17,25 +17,6 @@
 <script src="./js/respond.min.js"></script>
 <![endif]-->
 
-<Script type="text/javascript">
-<!--
-	function logout(){
-		var form = document.getElementById('actionform');
-		form.action = 'user.do';
-		form.method = 'Post';
-		form.elements["mode"].value = 'logout';
-		form.submit();
-	}
-
-	function visualizeProducts(){
-		var form = document.getElementById('actionform');
-		form.action = 'operaview.do';
-		form.element["mode"].value = 'displayproducts';
-		form.submit();
-	}
--->
-</Script>
-
 </head>
 
 <body>
@@ -72,16 +53,16 @@
 		
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<ul class="nav menu">
-			<li class="active"><a href=""><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Home</a></li>
+			<li class="active"><a href="javascript:displayHome();"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Home</a></li>
 			
-			<li><a href=""><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Product</a></li>
-			<li><a href=""><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Order</a></li>
-			<li><a href=""><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Team</a></li>
-			<li><a href=""><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Contact</a></li>
+			<li><a href="javascript:displayProducts();"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Product</a></li>
+			<li><a href="#"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Order</a></li>
+			<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Team</a></li>
+			<li><a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Contact</a></li>
 			<li role="presentation" class="divider"></li>
 			<% Object func = request.getAttribute("func");
 			if (func != null && func.toString().indexOf("3,") > -1){
-				out.print("<li id=\"usermgmnt\"><a href=\"\"><svg class=\"glyph stroked table\"><use xlink:href=\"#stroked-table\"></use></svg> User</a></li>");
+				out.print("<li id=\"usermgmnt\"><a href=\"javascript:displayUsers();\"><svg class=\"glyph stroked table\"><use xlink:href=\"#stroked-table\"></use></svg> User</a></li>");
 			} %>
 		</ul>
 
@@ -98,6 +79,7 @@
 	<script src="./js/easypiechart.js"></script>
 	<script src="./js/easypiechart-data.js"></script>
 	<script src="./js/bootstrap-datepicker.js"></script>
+	<script src="./js/home.js"></script>
 	<script>
 		$('#calendar').datepicker({
 		});

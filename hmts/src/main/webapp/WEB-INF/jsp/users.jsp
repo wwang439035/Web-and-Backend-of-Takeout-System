@@ -1,4 +1,4 @@
-<%@ page language="java" errorPage="./jsp/error.jsp" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" errorPage="error.jsp" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,12 +27,12 @@
 		<input name="firstName" type="hidden" value="${firstName}" />
 		<input name="role" type="hidden" value="${role}" />
 		<input name="func" type="hidden" value="${func}" />
-		<input name="proList" id="proList" type="hidden" value='${proList}' />
+		<input name="userList" id="userList" type="hidden" value='${userList}' />
 	</form>
 	<div class="modal modal-transparent fade" id="modal-transparent" tabindex="-1" role="dialog" aria-labelledby="addProductLabel" aria-hidden="true">
-	  <div class="modal-dialog">
+	  <div class="modal-dialog modal-md">
 	    <div class="modal-content">
-	    	<jsp:include page="addproduct.jsp" flush="true">
+	    	<jsp:include page="register.jsp" flush="true">
 	    		<jsp:param name="userId" value='<%=request.getParameter("userId") %>' />
 	    		<jsp:param name="firstName" value='<%=request.getParameter("firstName") %>' />
 	    		<jsp:param name="role" value='<%=request.getParameter("role") %>' />
@@ -86,34 +86,36 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg></li>
+				<li class="active"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg></li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h3 class="page-header">PRODUCT</h3>
+				<h3 class="page-header">USER</h3>
 			</div>
 		</div><!--/.row-->
 				
 		<div class="row">
 			<div class="col-lg-12" align="right">
-				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-transparent" style="margin-right: 30px">ADD PRODUCT</button>
+				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-transparent" style="margin-right: 30px">REGISTRATION</button>
 			</div>
 		</div><br>
 		
 		<div class="col-sm-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<table id="protable" data-pagination="true" data-search="true" data-toggle="table" 
+					<table id="usertable" data-pagination="true" data-search="true" data-toggle="table" 
 						data-show-refresh="true" data-sort-name="productId" data-sort-order="asc" class="table table-striped table-hover">
 						<thead>
 						    <tr>
-						        <th data-sortable="true" data-field="productId" data-align="center">Item ID</th>
-						        <th data-sortable="true" data-field="name" data-align="center" >Item Name</th>
-						        <th data-sortable="true" data-field="type" data-align="center">Item Type</th>
-						        <th data-sortable="true" data-field="price" data-align="center">Item Price</th>
-						        <th data-field="brief" data-align="center">Item Description</th>
+						        <th data-sortable="true" data-field="userId" data-align="center">User ID</th>
+						        <th data-sortable="true" data-field="username" data-align="center" >Username</th>
+						        <th data-field="password" data-align="center" >Password</th>
+						        <th data-sortable="true" data-field="firstName" data-align="center">First Name</th>
+						        <th data-sortable="true" data-field="lastName" data-align="center">Last Name</th>
+						        <th data-field="phone" data-align="center">Phone</th>
+						        <th data-field="role" data-align="center">Role</th>
 						    </tr>
 						</thead>
 					</table>
@@ -141,8 +143,8 @@
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 	
-		var data = JSON.parse($('#proList').attr("value"));
-		$('#protable').bootstrapTable({data:data});
+		var data = JSON.parse($('#userList').attr("value"));
+		$('#usertable').bootstrapTable({data:data});
 		
 	</script>
 
