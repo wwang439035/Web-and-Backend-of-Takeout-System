@@ -40,7 +40,7 @@
 						<fieldset>
 							<img src="./images/signin.jpg" width="100%" alt="Sign in" /><br><br>
 							<div class="form-group">
-								<input class="form-control" placeholder="E-mail" name="username" value="${username}" type="email" autofocus="">
+								<input class="form-control" placeholder="Username" name="username" value="${username}" type="email" autofocus="">
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="password" type="password" value="">
