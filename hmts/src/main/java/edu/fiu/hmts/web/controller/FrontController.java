@@ -27,33 +27,40 @@ public class FrontController extends MultiActionController {
 	 * @return the model and view
 	 */
 	public ModelAndView dispatcher(HttpServletRequest request, HttpServletResponse response) {
-		String targetPage = request.getParameter("target").toString();
-		logger.info("Dispatch a page " + targetPage);
-		
 		ModelAndView targetView = new ModelAndView();
-		targetView.addObject("userId", request.getParameter("userId"));
-		targetView.addObject("role", request.getParameter("role"));
-		targetView.addObject("firstName", request.getParameter("firstName"));
-		targetView.addObject("func", request.getParameter("func"));
-		
-		switch (targetPage) {
-		case "login":
-			targetView.setViewName("login");;
-			break;
-		case "home":
-			targetView.setViewName("home");;
-			break;
-		case "contact":
-			targetView.setViewName("contact");;
-			break;
-		case "team":
-			targetView.setViewName("team");;
-			break;
+		try{
+			String targetPage = request.getParameter("target").toString();
+			logger.info("Dispatch a page " + targetPage);
 
-		default:
-			break;
+			targetView.addObject("userId", request.getParameter("userId"));
+			targetView.addObject("role", request.getParameter("role"));
+			targetView.addObject("firstName", request.getParameter("firstName"));
+			targetView.addObject("func", request.getParameter("func"));
+			
+			switch (targetPage) {
+			case "login":
+				targetView.setViewName("login");
+				break;
+			case "home":
+				targetView.setViewName("home");
+				break;
+			case "contact":
+				targetView.setViewName("contact");
+				break;
+			case "team":
+				targetView.setViewName("team");
+				break;
+	
+			default:
+				break;
+			}
+			
+			return targetView;
 		}
-		
-		return targetView;
+		catch(Exception e){
+			logger.fatal(e.getMessage());
+			targetView.setViewName("home");
+			return targetView;
+		}
 	}
 }

@@ -10,7 +10,6 @@ import edu.fiu.hmts.util.servbuilder.Director;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -40,32 +39,35 @@ public class UserController extends MultiActionController {
 	 * @param response
 	 *            the response
 	 * @return the model and view
-	 * @throws Exception
-	 *             the exception
 	 */
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) 
-			throws Exception {
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
 		logger.info("User is signing in the system.");
-		
 		ModelAndView page = new ModelAndView();
 		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		User user = userService.login(username, password);
-		
-		if (user.getUserId() == -1){
+		try{
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			User user = userService.login(username, password);
+			
+			if (user.getUserId() == -1){
+				page.setViewName("login");
+				page.addObject("username", username);
+			}
+			else{
+				page.setViewName("home");
+				page.addObject("userId", user.getUserId());
+				page.addObject("role", user.getRole());
+				page.addObject("firstName", user.getFirstName());
+				page.addObject("func", user.getTag());
+			}
+	
+			return page;
+		}
+		catch(Exception e){
+			logger.fatal(e.getMessage());
 			page.setViewName("login");
-			page.addObject("username", username);
+			return page;
 		}
-		else{
-			page.setViewName("home");
-			page.addObject("userId", user.getUserId());
-			page.addObject("role", user.getRole());
-			page.addObject("firstName", user.getFirstName());
-			page.addObject("func", user.getTag());
-		}
-
-		return page;
 	}
 	
 	

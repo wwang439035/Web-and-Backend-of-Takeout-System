@@ -12,8 +12,6 @@ import edu.fiu.hmts.dao.FunctionRoleMapper;
 import edu.fiu.hmts.dao.UserMapper;
 import edu.fiu.hmts.domain.FunctionRoleExample;
 import edu.fiu.hmts.domain.FunctionRoleKey;
-import edu.fiu.hmts.domain.Product;
-import edu.fiu.hmts.domain.ProductExample;
 import edu.fiu.hmts.domain.User;
 import edu.fiu.hmts.domain.UserExample;
 import edu.fiu.hmts.service.IUserService;
