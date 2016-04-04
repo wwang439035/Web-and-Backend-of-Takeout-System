@@ -33,11 +33,12 @@
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
-				<div class="panel-heading">Welcome to Login Happy Meal</div>
+				<div class="panel-heading" style="font-family:Comic Sans MS;font-size:25px;color:#333333" align="center">Welcome to Login Happy Meal</div>
 				<div class="panel-body">
 					<form id="Login_Form" role="form">
 						<input type="hidden" name="mode"/>
 						<fieldset>
+							<img src="./images/signin.jpg" width="100%" alt="Sign in" /><br><br>
 							<div class="form-group">
 								<input class="form-control" placeholder="E-mail" name="username" value="${username}" type="email" autofocus="">
 							</div>
@@ -45,8 +46,7 @@
 								<input class="form-control" placeholder="Password" name="password" type="password" value="">
 							</div>
 
-							<a href="javascript:login();" class="btn btn-primary">Login</a>&nbsp;&nbsp;
-							<a href="index.html" class="btn btn-primary">Forget Password</a>&nbsp;&nbsp;
+							<a href="javascript:login();" class="btn btn-primary col-md-12">Sign in</a>
 						</fieldset>
 					</form>
 				</div>
