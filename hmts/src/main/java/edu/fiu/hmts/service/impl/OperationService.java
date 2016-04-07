@@ -26,7 +26,7 @@ public class OperationService implements IOperationService {
 	@Autowired
 	private ProductMapper productMapper;
 	
-	protected final Log Logger = LogFactory.getLog(getClass());
+	protected final Log logger = LogFactory.getLog(getClass());
 	
 	
 	/**
@@ -41,7 +41,7 @@ public class OperationService implements IOperationService {
 			return products;
 		}
 		catch(Exception e){
-			Logger.fatal(e.getMessage());
+			logger.fatal(e.getMessage());
 			return new ArrayList<Product>();
 		}
 	}
@@ -59,7 +59,7 @@ public class OperationService implements IOperationService {
 			return res;
 		}
 		catch(Exception e){
-			Logger.fatal(e.getMessage());
+			logger.fatal(e.getMessage());
 			return -1;
 		}
 	}

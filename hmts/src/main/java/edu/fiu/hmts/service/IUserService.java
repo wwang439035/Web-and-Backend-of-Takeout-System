@@ -5,7 +5,6 @@ package edu.fiu.hmts.service;
 
 import java.util.List;
 
-import edu.fiu.hmts.domain.Product;
 import edu.fiu.hmts.domain.User;
 
 /**
@@ -46,18 +45,20 @@ public interface IUserService {
 	 *            the username
 	 * @param password
 	 *            the password
+	 * @param type
+	 *            the type
 	 * @return the user
 	 */
-	public User login(String username, String password);
+	public User login(String username, String password, int type);
 	
 	/**
 	 * Logout.
 	 *
-	 * @param userid
+	 * @param l
 	 *            the userid
 	 * @return true, if successful
 	 */
-	public boolean logout(int userid);
+	public boolean logout(long l);
 	
 	/**
 	 * Display the users.

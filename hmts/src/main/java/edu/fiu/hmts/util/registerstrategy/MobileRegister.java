@@ -47,6 +47,7 @@ public class MobileRegister implements IRegister {
 			String lastname, String phone, String role, int secid, String answer) {
 		
 		User user = new User();
+		user.setUserId(System.currentTimeMillis());
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setFirstName(firstname);

@@ -47,7 +47,7 @@ public class UserController extends MultiActionController {
 		try{
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			User user = userService.login(username, password);
+			User user = userService.login(username, password, 0);
 			
 			if (user.getUserId() == -1){
 				page.setViewName("login");

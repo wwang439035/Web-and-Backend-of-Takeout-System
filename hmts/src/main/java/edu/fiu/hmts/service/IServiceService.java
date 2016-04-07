@@ -5,8 +5,13 @@ package edu.fiu.hmts.service;
 
 import java.util.List;
 
+import edu.fiu.hmts.domain.Card;
+import edu.fiu.hmts.domain.Order;
+import edu.fiu.hmts.domain.Payment;
 import edu.fiu.hmts.domain.Product;
+import edu.fiu.hmts.domain.SecQuestion;
 import edu.fiu.hmts.domain.SelProduct;
+import edu.fiu.hmts.domain.User;
 
 /**
  * The Interface IServiceService.
@@ -28,7 +33,7 @@ public interface IServiceService {
 	 * @param product
 	 *            the product
 	 */
-	public void selectProduct(int userid, Product product);
+	public int selectProduct(SelProduct product);
 	
 	/**
 	 * Remove product.
@@ -38,16 +43,16 @@ public interface IServiceService {
 	 * @param productid
 	 *            the productid
 	 */
-	public void removeProduct(int userid, int productid);
+	public int removeProduct(int userid, int productid);
 	
 	/**
 	 * Display the cart.
 	 *
-	 * @param userid
+	 * @param data
 	 *            the userid
 	 * @return the list
 	 */
-	public List<SelProduct> displayCart(int userid);
+	public List<SelProduct> displayCart(long data);
 	
 	/**
 	 * Place order.
@@ -55,5 +60,12 @@ public interface IServiceService {
 	 * @param userid
 	 *            the userid
 	 */
-	public void placeOrder(int userid);
+	public int placeOrder(User user, Order order, Payment payment, Card card);
+	
+	/**
+	 * Gets the questions.
+	 *
+	 * @return the questions
+	 */
+	public List<SecQuestion> getQuestions();
 }

@@ -98,27 +98,36 @@ public class UserService implements IUserService {
 	 *            the username
 	 * @param password
 	 *            the password
+	 * @param type
+	 *            the type
 	 * @return the user
 	 */
 	/* (non-Javadoc)
 	 * @see edu.fiu.hmts.service.IUserService#login(edu.fiu.hmts.domain.User, java.lang.String)
 	 */
 	@Override
-	public User login(String username, String password) {
+	public User login(String username, String password, int type) {
 		String func = "";
 		UserExample userExample = new UserExample();
-		UserExample.Criteria criteria = userExample.createCriteria();
-		criteria.andUsernameEqualTo(username);
-		criteria.andPasswordEqualTo(password);
+		
+		if (type == 0){
+			userExample.or().andUsernameEqualTo(username).andPasswordEqualTo(password).andRoleEqualTo("1");
+			userExample.or().andUsernameEqualTo(username).andPasswordEqualTo(password).andRoleEqualTo("2");
+		}
+		else if (type == 1) {
+			userExample.or().andUsernameEqualTo(username).andPasswordEqualTo(password).andRoleEqualTo("3");
+			userExample.or().andUsernameEqualTo(username).andPasswordEqualTo(password).andRoleEqualTo("4");
+		}
+			
 		List<User> userConfirm = userMapper.selectByExample(userExample);
-		
-		if (userConfirm.size() == 0 || "3".equals(userConfirm.get(0).getRole())
-				|| "4".equals(userConfirm.get(0).getRole()))
-			return new User();
-		
+		if (userConfirm.size() == 0){
+			User user = new User();
+			user.setUserId(-1);
+			return user;
+		}
 		func = rolesControl(userConfirm.get(0));
-		
 		userConfirm.get(0).setTag(func);
+		
 		return userConfirm.get(0);
 	}
 
@@ -133,7 +142,7 @@ public class UserService implements IUserService {
 	 * @see edu.fiu.hmts.service.IUserService#logout(edu.fiu.hmts.domain.User)
 	 */
 	@Override
-	public boolean logout(int userid) {
+	public boolean logout(long userid) {
 		// TODO Auto-generated method stub
 		return true;
 	}
