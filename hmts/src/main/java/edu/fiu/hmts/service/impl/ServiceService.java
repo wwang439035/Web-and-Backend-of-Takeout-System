@@ -109,7 +109,7 @@ public class ServiceService implements IServiceService {
 	 *            the productid
 	 */
 	@Override
-	public int removeProduct(int userid, int productid) {
+	public int removeProduct(long userid, int productid) {
 		try {
 			SelProductExample selProductExample = new SelProductExample();
 			Criteria criteria = selProductExample.createCriteria();

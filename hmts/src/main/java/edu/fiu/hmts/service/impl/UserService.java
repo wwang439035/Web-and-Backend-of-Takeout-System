@@ -122,7 +122,7 @@ public class UserService implements IUserService {
 		List<User> userConfirm = userMapper.selectByExample(userExample);
 		if (userConfirm.size() == 0){
 			User user = new User();
-			user.setUserId(-1);
+			user.setUserId(-1L);
 			return user;
 		}
 		func = rolesControl(userConfirm.get(0));

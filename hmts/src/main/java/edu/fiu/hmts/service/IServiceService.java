@@ -43,7 +43,7 @@ public interface IServiceService {
 	 * @param productid
 	 *            the productid
 	 */
-	public int removeProduct(int userid, int productid);
+	public int removeProduct(long userid, int productid);
 	
 	/**
 	 * Display the cart.
