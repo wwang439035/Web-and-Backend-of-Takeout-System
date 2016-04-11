@@ -15,6 +15,8 @@ import edu.fiu.hmts.service.IUserService;
 @Service
 @Configurable
 public class UserBuilder implements IBuilder {
+	
+	/** The user service. */
 	@Autowired
 	IUserService userService;
 

@@ -16,10 +16,11 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 @Controller
 public class ServiceController extends MultiActionController {
 	
+	/** The logger. */
 	protected final Log logger = LogFactory.getLog(getClass());
 	
 	/**
-	 * Display the products.
+	 * Display the menu.
 	 *
 	 * @param request
 	 *            the request
@@ -32,7 +33,7 @@ public class ServiceController extends MultiActionController {
 	}
 	
 	/**
-	 * Select the product.
+	 * Query product.
 	 *
 	 * @param request
 	 *            the request
@@ -45,7 +46,7 @@ public class ServiceController extends MultiActionController {
 	}
 	
 	/**
-	 * Delete a product from shopping cart.
+	 * Del product cart.
 	 *
 	 * @param request
 	 *            the request
@@ -58,7 +59,7 @@ public class ServiceController extends MultiActionController {
 	}
 	
 	/**
-	 * Display shopping cart.
+	 * Display the cart.
 	 *
 	 * @param request
 	 *            the request
@@ -71,7 +72,7 @@ public class ServiceController extends MultiActionController {
 	}
 	
 	/**
-	 * Create an order.
+	 * New order.
 	 *
 	 * @param request
 	 *            the request

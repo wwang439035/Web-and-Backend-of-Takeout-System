@@ -163,8 +163,8 @@ public class MobileInterface {
 	/**
 	 * Query product.
 	 *
-	 * @param data
-	 *            the data
+	 * @param selProduct
+	 *            the sel product
 	 * @return the response
 	 */
 	@Path("/selectproduct")
@@ -195,8 +195,8 @@ public class MobileInterface {
 	/**
 	 * Remove product.
 	 *
-	 * @param data
-	 *            the data
+	 * @param selProduct
+	 *            the sel product
 	 * @return the response
 	 */
 	@Path("/removeproduct")

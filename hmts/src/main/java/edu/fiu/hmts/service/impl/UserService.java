@@ -25,15 +25,19 @@ import edu.fiu.hmts.util.registerstrategy.WebRegister;
 @Service
 public class UserService implements IUserService {
 
+	/** The user mapper. */
 	@Autowired 
 	private UserMapper userMapper;
 	
+	/** The function role mapper. */
 	@Autowired
 	private FunctionRoleMapper functionRoleMapper;
 	
+	/** The web register. */
 	@Autowired
 	private IRegister webRegister;
 	
+	/** The mobile register. */
 	@Autowired
 	private IRegister mobileRegister;
 	

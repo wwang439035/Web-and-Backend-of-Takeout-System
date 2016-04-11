@@ -23,9 +23,11 @@ import edu.fiu.hmts.service.IOperationService;
 @Controller
 public class OperationController extends MultiActionController {
 	
+	/** The opera service. */
 	@Autowired
 	private IOperationService operaService;
 
+	/** The logger. */
 	protected final Log logger = LogFactory.getLog(getClass());
 	
 	/**
@@ -62,7 +64,7 @@ public class OperationController extends MultiActionController {
 	
 	
 	/**
-	 * Creates the products.
+	 * Creates the product.
 	 *
 	 * @param request
 	 *            the request

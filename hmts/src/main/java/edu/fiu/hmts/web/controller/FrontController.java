@@ -15,10 +15,11 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 @Controller
 public class FrontController extends MultiActionController {
 
+	/** The logger. */
 	protected final Log logger = LogFactory.getLog(getClass());
 	
 	/**
-	 * Dispatch web pages.
+	 * Dispatcher.
 	 *
 	 * @param request
 	 *            the request

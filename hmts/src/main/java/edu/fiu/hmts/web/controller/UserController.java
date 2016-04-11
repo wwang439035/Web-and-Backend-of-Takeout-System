@@ -26,8 +26,10 @@ import org.json.JSONObject;
 @Controller
 public class UserController extends MultiActionController {
 	
+	/** The logger. */
 	protected final Log logger = LogFactory.getLog(getClass());
 	
+	/** The user service. */
 	private IUserService userService = (IUserService) Director.contruct("UserService");
 	
 	

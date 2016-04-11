@@ -28,10 +28,9 @@ public interface IServiceService {
 	/**
 	 * Query product.
 	 *
-	 * @param userid
-	 *            the userid
 	 * @param product
 	 *            the product
+	 * @return the int
 	 */
 	public int selectProduct(SelProduct product);
 	
@@ -42,6 +41,7 @@ public interface IServiceService {
 	 *            the userid
 	 * @param productid
 	 *            the productid
+	 * @return the int
 	 */
 	public int removeProduct(long userid, long productid);
 	

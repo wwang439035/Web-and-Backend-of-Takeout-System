@@ -1,5 +1,5 @@
-edu.fiu.hmts.dao
-edu.fiu.hmts.domain
+edu.fiu.hmts.dao.hmts_repos
+edu.fiu.hmts.domain.hmts_repos
 edu.fiu.hmts.service
 edu.fiu.hmts.service.impl
 edu.fiu.hmts.util.registerstrategy

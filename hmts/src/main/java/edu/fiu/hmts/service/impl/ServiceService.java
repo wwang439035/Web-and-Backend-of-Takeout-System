@@ -37,27 +37,35 @@ import edu.fiu.hmts.service.IServiceService;
 @Service
 public class ServiceService implements IServiceService {
 	
+	/** The sec question mapper. */
 	@Autowired
 	private SecQuestionMapper secQuestionMapper;
 	
+	/** The product mapper. */
 	@Autowired
 	private ProductMapper productMapper;
 	
+	/** The sel product mapper. */
 	@Autowired
 	private SelProductMapper selProductMapper;
 	
+	/** The order mapper. */
 	@Autowired
 	private OrderMapper orderMapper;
 	
+	/** The order product mapper. */
 	@Autowired
 	private OrderProductMapper orderProductMapper;
 	
+	/** The payment mapper. */
 	@Autowired
 	private PaymentMapper paymentMapper;
 	
+	/** The card mapper. */
 	@Autowired
 	private CardMapper cardMapper;
 
+	/** The logger. */
 	protected final Log logger = LogFactory.getLog(getClass());
 	
 	/**
@@ -80,12 +88,11 @@ public class ServiceService implements IServiceService {
 	}
 
 	/**
-	 * Select product.
+	 * Query product.
 	 *
-	 * @param userid
-	 *            the userid
 	 * @param product
 	 *            the product
+	 * @return the int
 	 */
 	@Override
 	public int selectProduct(SelProduct product) {
@@ -100,12 +107,13 @@ public class ServiceService implements IServiceService {
 	}
 
 	/**
-	 * Removes the product.
+	 * Remove product.
 	 *
 	 * @param userid
 	 *            the userid
 	 * @param productid
 	 *            the productid
+	 * @return the int
 	 */
 	@Override
 	public int removeProduct(long userid, long productid) {
@@ -197,6 +205,11 @@ public class ServiceService implements IServiceService {
 		}
 	}
 
+	/**
+	 * Gets the questions.
+	 *
+	 * @return the questions
+	 */
 	@Override
 	public List<SecQuestion> getQuestions() {
 		try {

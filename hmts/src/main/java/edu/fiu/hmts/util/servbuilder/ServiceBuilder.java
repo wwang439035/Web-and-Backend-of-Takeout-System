@@ -15,6 +15,8 @@ import edu.fiu.hmts.service.IServiceService;
 @Service
 @Configurable
 public class ServiceBuilder implements IBuilder{
+	
+	/** The serv service. */
 	@Autowired
 	IServiceService servService;
 	

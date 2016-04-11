@@ -19,9 +19,11 @@ import edu.fiu.hmts.domain.hmts_repos.User;
 @Configurable
 public class MobileRegister implements IRegister {
 
+	/** The user mapper. */
 	@Autowired
 	private UserMapper userMapper;
 	
+	/** The Logger. */
 	protected final Log Logger = LogFactory.getLog(getClass());
 	
 	
