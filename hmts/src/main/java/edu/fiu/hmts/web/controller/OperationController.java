@@ -13,7 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import edu.fiu.hmts.domain.Product;
+import edu.fiu.hmts.domain.hmts_repos.Order;
+import edu.fiu.hmts.domain.hmts_repos.Product;
 import edu.fiu.hmts.service.IOperationService;
 
 /**
@@ -94,6 +95,38 @@ public class OperationController extends MultiActionController {
 			productView.addObject("func", request.getParameter("func"));
 			
 			return productView;
+		}
+		catch(Exception e){
+			logger.fatal(e.getMessage());
+			return new ModelAndView();
+		}
+	}
+	
+	/**
+	 * Display the orders.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 */
+	public ModelAndView displayOrders(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("Show order list");
+
+		try{
+			List<Order> orderList = operaService.displayOrders();
+			String object = JSONObject.valueToString(orderList);
+			
+			ModelAndView orderView = new ModelAndView();
+			orderView.setViewName("orders");
+			orderView.addObject("orderList", object);
+			orderView.addObject("userId", request.getParameter("userId"));
+			orderView.addObject("role", request.getParameter("role"));
+			orderView.addObject("firstName", request.getParameter("firstName"));
+			orderView.addObject("func", request.getParameter("func"));
+			
+			return orderView;
 		}
 		catch(Exception e){
 			logger.fatal(e.getMessage());

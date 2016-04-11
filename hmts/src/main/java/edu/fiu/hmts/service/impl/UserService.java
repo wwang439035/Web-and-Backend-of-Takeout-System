@@ -8,12 +8,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.fiu.hmts.dao.FunctionRoleMapper;
-import edu.fiu.hmts.dao.UserMapper;
-import edu.fiu.hmts.domain.FunctionRoleExample;
-import edu.fiu.hmts.domain.FunctionRoleKey;
-import edu.fiu.hmts.domain.User;
-import edu.fiu.hmts.domain.UserExample;
+import edu.fiu.hmts.dao.hmts_repos.FunctionRoleMapper;
+import edu.fiu.hmts.dao.hmts_repos.UserMapper;
+import edu.fiu.hmts.domain.hmts_repos.FunctionRoleExample;
+import edu.fiu.hmts.domain.hmts_repos.FunctionRoleKey;
+import edu.fiu.hmts.domain.hmts_repos.User;
+import edu.fiu.hmts.domain.hmts_repos.UserExample;
 import edu.fiu.hmts.service.IUserService;
 import edu.fiu.hmts.util.registerstrategy.IRegister;
 import edu.fiu.hmts.util.registerstrategy.MobileRegister;

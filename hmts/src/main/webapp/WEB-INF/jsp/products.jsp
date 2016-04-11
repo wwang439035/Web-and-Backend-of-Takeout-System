@@ -70,7 +70,7 @@
 			<li class="active"><a href="javascript:displayHome();"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Home</a></li>
 			
 			<li><a href="javascript:displayProducts();"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Product</a></li>
-			<li><a href="#"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Order</a></li>
+			<li><a href="javascript:displayOrders();"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Order</a></li>
 			<li><a href="javascript:displayTeam();"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Team</a></li>
 			<li><a href="javascript:displayContact();"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Contact</a></li>
 			<li role="presentation" class="divider"></li>

@@ -3,7 +3,7 @@
  */
 package edu.fiu.hmts.util.registerstrategy;
 
-import edu.fiu.hmts.domain.User;
+import edu.fiu.hmts.domain.hmts_repos.User;
 
 /**
  * The Interface IRegister.

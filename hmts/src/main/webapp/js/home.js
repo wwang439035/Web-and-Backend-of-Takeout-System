@@ -44,6 +44,14 @@ function createProduct(){
 	}
 }
 
+function displayOrders(){
+	var form = document.getElementById('actionform');
+	form.action = 'operation.do';
+	form.method= 'Post';
+	form.elements["mode"].value = 'displayOrders';
+	form.submit();
+}
+
 function displayTeam(){
 	var form = document.getElementById('actionform');
 	form.action = 'front.do';

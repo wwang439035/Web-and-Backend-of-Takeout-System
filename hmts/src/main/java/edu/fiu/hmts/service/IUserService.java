@@ -5,7 +5,7 @@ package edu.fiu.hmts.service;
 
 import java.util.List;
 
-import edu.fiu.hmts.domain.User;
+import edu.fiu.hmts.domain.hmts_repos.User;
 
 /**
  * The Interface IUserService.

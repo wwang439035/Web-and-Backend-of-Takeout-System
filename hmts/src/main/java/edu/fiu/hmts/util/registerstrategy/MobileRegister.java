@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
-import edu.fiu.hmts.dao.UserMapper;
-import edu.fiu.hmts.domain.User;
+import edu.fiu.hmts.dao.hmts_repos.UserMapper;
+import edu.fiu.hmts.domain.hmts_repos.User;
 
 /**
  * The Class MobileRegister.

@@ -11,24 +11,24 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.fiu.hmts.dao.CardMapper;
-import edu.fiu.hmts.dao.OrderMapper;
-import edu.fiu.hmts.dao.OrderProductMapper;
-import edu.fiu.hmts.dao.PaymentMapper;
-import edu.fiu.hmts.dao.ProductMapper;
-import edu.fiu.hmts.dao.SecQuestionMapper;
-import edu.fiu.hmts.dao.SelProductMapper;
-import edu.fiu.hmts.domain.Card;
-import edu.fiu.hmts.domain.Order;
-import edu.fiu.hmts.domain.OrderProduct;
-import edu.fiu.hmts.domain.Payment;
-import edu.fiu.hmts.domain.Product;
-import edu.fiu.hmts.domain.ProductExample;
-import edu.fiu.hmts.domain.SecQuestion;
-import edu.fiu.hmts.domain.SecQuestionExample;
-import edu.fiu.hmts.domain.SelProduct;
-import edu.fiu.hmts.domain.SelProductExample;
-import edu.fiu.hmts.domain.SelProductExample.Criteria;
+import edu.fiu.hmts.dao.hmts_repos.CardMapper;
+import edu.fiu.hmts.dao.hmts_repos.OrderMapper;
+import edu.fiu.hmts.dao.hmts_repos.OrderProductMapper;
+import edu.fiu.hmts.dao.hmts_repos.PaymentMapper;
+import edu.fiu.hmts.dao.hmts_repos.ProductMapper;
+import edu.fiu.hmts.dao.hmts_repos.SecQuestionMapper;
+import edu.fiu.hmts.dao.hmts_repos.SelProductMapper;
+import edu.fiu.hmts.domain.hmts_repos.Card;
+import edu.fiu.hmts.domain.hmts_repos.Order;
+import edu.fiu.hmts.domain.hmts_repos.OrderProduct;
+import edu.fiu.hmts.domain.hmts_repos.Payment;
+import edu.fiu.hmts.domain.hmts_repos.Product;
+import edu.fiu.hmts.domain.hmts_repos.ProductExample;
+import edu.fiu.hmts.domain.hmts_repos.SecQuestion;
+import edu.fiu.hmts.domain.hmts_repos.SecQuestionExample;
+import edu.fiu.hmts.domain.hmts_repos.SelProduct;
+import edu.fiu.hmts.domain.hmts_repos.SelProductExample;
+import edu.fiu.hmts.domain.hmts_repos.SelProductExample.Criteria;
 import edu.fiu.hmts.service.IServiceService;
 
 /**
@@ -183,7 +183,7 @@ public class ServiceService implements IServiceService {
 			if (res == -1) return res;
 			paymentId = payment.getPaymentId();
 			
-			if (payment.getMethod() == "1"){
+			if ("1".equals(payment.getMethod())){
 				card.setPaymentId(paymentId);
 				cardMapper.insert(card);
 				if (res == -1) return res;

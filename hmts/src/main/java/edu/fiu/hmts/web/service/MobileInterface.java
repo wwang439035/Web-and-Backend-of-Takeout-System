@@ -22,14 +22,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sun.jersey.api.spring.Autowire;
 
-import edu.fiu.hmts.domain.Card;
-import edu.fiu.hmts.domain.Order;
-import edu.fiu.hmts.domain.OrderProduct;
-import edu.fiu.hmts.domain.Payment;
-import edu.fiu.hmts.domain.Product;
-import edu.fiu.hmts.domain.SecQuestion;
-import edu.fiu.hmts.domain.SelProduct;
-import edu.fiu.hmts.domain.User;
+import edu.fiu.hmts.domain.hmts_repos.Card;
+import edu.fiu.hmts.domain.hmts_repos.Order;
+import edu.fiu.hmts.domain.hmts_repos.OrderProduct;
+import edu.fiu.hmts.domain.hmts_repos.Payment;
+import edu.fiu.hmts.domain.hmts_repos.Product;
+import edu.fiu.hmts.domain.hmts_repos.SecQuestion;
+import edu.fiu.hmts.domain.hmts_repos.SelProduct;
+import edu.fiu.hmts.domain.hmts_repos.User;
 import edu.fiu.hmts.service.IServiceService;
 import edu.fiu.hmts.service.IUserService;
 
@@ -279,11 +279,11 @@ public class MobileInterface {
 			}
 			int res = servservice.placeOrder(order, payment, orderProducts, card);
 			
-			Map<String, Object> map = new LinkedHashMap<>();
+			JSONObject map = new JSONObject();
 			map.put("result", res == 1 ? "successful" : "Failed");
 			map.put("count", 0);
 			map.put("data", "");
-			return Response.ok(map, MediaType.TEXT_PLAIN).build();
+			return Response.ok(map.toString(), MediaType.TEXT_PLAIN).build();
 		}
 		catch(Exception e){
 			logger.fatal(e.getMessage());

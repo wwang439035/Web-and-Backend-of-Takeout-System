@@ -4,7 +4,9 @@
 package edu.fiu.hmts.service;
 
 import java.util.List;
-import edu.fiu.hmts.domain.Product;
+
+import edu.fiu.hmts.domain.hmts_repos.Order;
+import edu.fiu.hmts.domain.hmts_repos.Product;
 
 /**
  * The Interface IOperationService.
@@ -25,4 +27,11 @@ public interface IOperationService {
 	 *            the product
 	 */
 	public int createProduct(Product product);
+	
+	/**
+	 * Display the orders.
+	 *
+	 * @return the list
+	 */
+	public List<Order> displayOrders();
 }

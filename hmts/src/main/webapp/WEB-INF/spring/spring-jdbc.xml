@@ -33,7 +33,7 @@
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
   	<property name="dataSource" ref="dataSourse" />
   	<property name="typeAliasesPackage" value="classpath*:edu/fiu/hmts/dao"/>
-  	<property name="mapperLocations" value="classpath*:edu/fiu/hmts/dao/mybatis/map/*.xml" />
+  	<property name="mapperLocations" value="classpath*:edu/fiu/hmts/dao/mybatis/map/hmts_repos/*.xml" />
   </bean>
   
   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

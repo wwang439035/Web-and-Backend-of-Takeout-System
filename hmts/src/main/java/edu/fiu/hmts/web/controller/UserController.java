@@ -3,7 +3,7 @@ package edu.fiu.hmts.web.controller;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import org.springframework.web.servlet.view.RedirectView;
 
-import edu.fiu.hmts.domain.User;
+import edu.fiu.hmts.domain.hmts_repos.User;
 import edu.fiu.hmts.service.IUserService;
 import edu.fiu.hmts.util.servbuilder.Director;
 

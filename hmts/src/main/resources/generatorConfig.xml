@@ -38,49 +38,59 @@
     
     <table tableName="user" domainObjectName="User" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
       <generatedKey column="user_id" sqlStatement="MySql" identity="true" />
     </table>
     
     <table tableName="secquestion" domainObjectName="SecQuestion" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
       <generatedKey column="sec_question_id" sqlStatement="MySql" identity="true" />
     </table>
     
     <table tableName="functionrole" domainObjectName="FunctionRole" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
     </table>
     
     <table tableName="function" domainObjectName="Function" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
       <generatedKey column="function_id" sqlStatement="MySql" identity="true" />
     </table>
     
     <table tableName="product" domainObjectName="Product" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
       <generatedKey column="product_id" sqlStatement="MySql" identity="true" />
     </table>
     
     <table tableName="selproduct" domainObjectName="SelProduct" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
     </table>
     
     <table tableName="order" domainObjectName="Order" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
       <generatedKey column="order_id" sqlStatement="MySql" identity="true" />
     </table>
     
     <table tableName="orderproduct" domainObjectName="OrderProduct" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
       <generatedKey column="orderproduct_id" sqlStatement="MySql" identity="true" />
     </table>
     
     <table tableName="payment" domainObjectName="Payment" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
       <generatedKey column="payment_id" sqlStatement="MySql" identity="true" />
     </table>
     
     <table tableName="card" domainObjectName="Card" >
       <property name="useActualColumnNames" value="false"/>
+      <property name="runtimeSchema" value="hmts_repos"/>
       <generatedKey column="card_id" sqlStatement="MySql" identity="true" />
     </table>
 

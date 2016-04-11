@@ -5,13 +5,13 @@ package edu.fiu.hmts.service;
 
 import java.util.List;
 
-import edu.fiu.hmts.domain.Card;
-import edu.fiu.hmts.domain.Order;
-import edu.fiu.hmts.domain.OrderProduct;
-import edu.fiu.hmts.domain.Payment;
-import edu.fiu.hmts.domain.Product;
-import edu.fiu.hmts.domain.SecQuestion;
-import edu.fiu.hmts.domain.SelProduct;
+import edu.fiu.hmts.domain.hmts_repos.Card;
+import edu.fiu.hmts.domain.hmts_repos.Order;
+import edu.fiu.hmts.domain.hmts_repos.OrderProduct;
+import edu.fiu.hmts.domain.hmts_repos.Payment;
+import edu.fiu.hmts.domain.hmts_repos.Product;
+import edu.fiu.hmts.domain.hmts_repos.SecQuestion;
+import edu.fiu.hmts.domain.hmts_repos.SelProduct;
 
 /**
  * The Interface IServiceService.

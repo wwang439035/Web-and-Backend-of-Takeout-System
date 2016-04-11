@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" errorPage="./jsp/error.jsp" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,7 +6,7 @@
 <title>Welcome to Happy Meal Take-out System</title>
 
 <link href="./css/bootstrap.min.css" rel="stylesheet">
-<link href="./css/datepicker3.css" rel="stylesheet">
+<link href="./css/bootstrap-table.css" rel="stylesheet">
 <link href="./css/styles.css" rel="stylesheet">
 
 <!--Icons-->
@@ -22,10 +22,12 @@
 <body>
 	<form id="actionform">
 		<input name="mode" type="hidden" />
+		<input name="target" type="hidden" />
 		<input name="userId" type="hidden" value="${userId}" />
 		<input name="firstName" type="hidden" value="${firstName}" />
 		<input name="role" type="hidden" value="${role}" />
 		<input name="func" type="hidden" value="${func}" />
+		<input name="orderList" id="orderList" type="hidden" value='${orderList}' />
 	</form>
 	
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -69,21 +71,45 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<img src="./images/home.png" alt="home image" width="100%">
-	</div>	<!--/.main-->
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg></li>
+			</ol>
+		</div><!--/.row-->
 
+		<div class="row">
+			<div class="col-lg-12">
+				<h3 class="page-header">ORDER</h3>
+			</div>
+		</div><!--/.row-->
+				
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<table id="ordertable" data-pagination="true" data-search="true" data-toggle="table" 
+						data-show-refresh="true" data-sort-name="ordertId" data-sort-order="asc" class="table table-striped table-hover">
+						<thead>
+						    <tr>
+						        <th data-sortable="true" data-field="orderId" data-align="center">Order ID</th>
+						        <th data-field="shipAddress" data-align="center" >Shipping Address</th>
+						        <th data-field="phone" data-align="center">Phone</th>
+						        <th data-field="note" data-align="center">Notes</th>
+						        <th data-sortable="true" data-field="status" data-align="center">Status</th>
+						        <th data-sortable="true" data-field=userId data-align="center">UserID</th>
+						    </tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+	
 	<script src="./js/jquery-1.11.1.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
-	<script src="./js/chart.min.js"></script>
-	<script src="./js/chart-data.js"></script>
-	<script src="./js/easypiechart.js"></script>
-	<script src="./js/easypiechart-data.js"></script>
-	<script src="./js/bootstrap-datepicker.js"></script>
+	<script src="./js/bootstrap-table.js"></script>
 	<script src="./js/home.js"></script>
 	<script>
-		$('#calendar').datepicker({
-		});
-
 		!function ($) {
 		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
 		        $(this).find('em:first').toggleClass("glyphicon-minus");      
@@ -97,7 +123,12 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+	
+		var data = JSON.parse($('#orderList').attr("value"));
+		$('#ordertable').bootstrapTable({data:data});
+		
+	</script>
+
 </body>
 
 </html>

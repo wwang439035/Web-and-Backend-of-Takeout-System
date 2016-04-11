@@ -11,9 +11,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.fiu.hmts.dao.ProductMapper;
-import edu.fiu.hmts.domain.Product;
-import edu.fiu.hmts.domain.ProductExample;
+import edu.fiu.hmts.dao.hmts_repos.OrderMapper;
+import edu.fiu.hmts.dao.hmts_repos.ProductMapper;
+import edu.fiu.hmts.domain.hmts_repos.Order;
+import edu.fiu.hmts.domain.hmts_repos.OrderExample;
+import edu.fiu.hmts.domain.hmts_repos.Product;
+import edu.fiu.hmts.domain.hmts_repos.ProductExample;
 import edu.fiu.hmts.service.IOperationService;
 
 
@@ -25,6 +28,9 @@ public class OperationService implements IOperationService {
 
 	@Autowired
 	private ProductMapper productMapper;
+	
+	@Autowired
+	private OrderMapper orderMapper;
 	
 	protected final Log logger = LogFactory.getLog(getClass());
 	
@@ -61,6 +67,23 @@ public class OperationService implements IOperationService {
 		catch(Exception e){
 			logger.fatal(e.getMessage());
 			return -1;
+		}
+	}
+
+	/**
+	 * Display the orders.
+	 *
+	 * @return the list
+	 */
+	@Override
+	public List<Order> displayOrders() {
+		try {
+			List<Order> orders = orderMapper.selectByExample(new OrderExample());
+			return orders;
+		}
+		catch(Exception e){
+			logger.fatal(e.getMessage());
+			return new ArrayList<Order>();
 		}
 	}
 
