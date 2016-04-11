@@ -29,7 +29,6 @@ import edu.fiu.hmts.domain.SecQuestionExample;
 import edu.fiu.hmts.domain.SelProduct;
 import edu.fiu.hmts.domain.SelProductExample;
 import edu.fiu.hmts.domain.SelProductExample.Criteria;
-import edu.fiu.hmts.domain.User;
 import edu.fiu.hmts.service.IServiceService;
 
 /**
@@ -70,7 +69,7 @@ public class ServiceService implements IServiceService {
 	public List<Product> displayMenu() {
 		try {
 			ProductExample productExample = new ProductExample();
-			productExample.setOrderByClause("type asc");
+			productExample.setOrderByClause("type desc");
 			List<Product> products = productMapper.selectByExample(productExample);
 			return products;
 		}
@@ -109,7 +108,7 @@ public class ServiceService implements IServiceService {
 	 *            the productid
 	 */
 	@Override
-	public int removeProduct(long userid, int productid) {
+	public int removeProduct(long userid, long productid) {
 		try {
 			SelProductExample selProductExample = new SelProductExample();
 			Criteria criteria = selProductExample.createCriteria();
@@ -149,42 +148,47 @@ public class ServiceService implements IServiceService {
 	/**
 	 * Place order.
 	 *
-	 * @param user
-	 *            the user
 	 * @param order
 	 *            the order
 	 * @param payment
 	 *            the payment
+	 * @param orderProducts
+	 *            the order products
 	 * @param card
 	 *            the card
 	 * @return the int
 	 */
 	@Override
-	public int placeOrder(User user, Order order, Payment payment, Card card) {
+	public int placeOrder(Order order, Payment payment, List<OrderProduct> orderProducts, Card card) {
 		try {
 			long orderId = -1;
+			long paymentId = -1;
 			int res = -1;
 			
-			List<SelProduct> selProducts = displayCart(user.getUserId());
-			if (selProducts.size() > 0){
-				orderId = System.currentTimeMillis();
-				order.setOrderId(orderId);
+			if (orderProducts.size() > 0){
 				res = orderMapper.insert(order);
+				if (res == -1) return res;
+				orderId = order.getOrderId();
 			}
 			
-			for (SelProduct selProduct : selProducts) {
-				OrderProduct orderProduct = new OrderProduct();
+			for (OrderProduct orderProduct : orderProducts) {
 				orderProduct.setOrderId(orderId);
-				orderProduct.setProductId(selProduct.getProductId());
-				//orderProduct.setName(selProduct.get);
-				//orderProduct.setPrice(selProduct.get);
-				
 				orderProductMapper.insert(orderProduct);
+				if (res == -1) return res;
 			}
 			
-			paymentMapper.insert(payment);
-			if (payment.getMethod() == "1")
+			payment.setOrderId(orderId);
+			payment.setPaymentId(0L);
+			paymentMapper.insertSelective(payment);
+			if (res == -1) return res;
+			paymentId = payment.getPaymentId();
+			
+			if (payment.getMethod() == "1"){
+				card.setPaymentId(paymentId);
 				cardMapper.insert(card);
+				if (res == -1) return res;
+			}
+				
 			return res;
 		}
 		catch(Exception e){

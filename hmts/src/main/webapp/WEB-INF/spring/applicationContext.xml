@@ -9,8 +9,8 @@
 
   <!-- the application context definition for the hmts DispatcherServlet -->
    
-  
-  
+  <!-- Reference to Properties -->
+  <context:property-placeholder location="classpath:sysconfig.properties" />
   
   
 

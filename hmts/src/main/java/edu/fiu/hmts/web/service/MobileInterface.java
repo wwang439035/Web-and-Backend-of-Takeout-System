@@ -1,5 +1,6 @@
 package edu.fiu.hmts.web.service;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,11 +15,17 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sun.jersey.api.spring.Autowire;
 
+import edu.fiu.hmts.domain.Card;
+import edu.fiu.hmts.domain.Order;
+import edu.fiu.hmts.domain.OrderProduct;
+import edu.fiu.hmts.domain.Payment;
 import edu.fiu.hmts.domain.Product;
 import edu.fiu.hmts.domain.SecQuestion;
 import edu.fiu.hmts.domain.SelProduct;
@@ -52,6 +59,7 @@ public class MobileInterface {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response register(User data) {
+		logger.info("Create an account.");
 		try{
 			Map<String, Object> map = new LinkedHashMap<>();
 			User user = userService.register(data.getUsername(), data.getPassword()
@@ -136,7 +144,7 @@ public class MobileInterface {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response displayMenu() {
-		logger.info("Show menu");
+		logger.info("Show menu.");
 
 		try{
 			List<Product> proList = servservice.displayMenu();
@@ -163,7 +171,7 @@ public class MobileInterface {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response selectProduct(SelProduct selProduct) {
-		logger.info("Remove a product in shopping cart");
+		logger.info("Remove a product in shopping cart.");
 		Map<String, Object> map = new LinkedHashMap<>();
 
 		try{
@@ -195,7 +203,7 @@ public class MobileInterface {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response removeProduct(SelProduct selProduct) {
-		logger.info("Remove a product in shopping cart");
+		logger.info("Remove a product in shopping cart.");
 		Map<String, Object> map = new LinkedHashMap<>();
 
 		try{
@@ -227,7 +235,7 @@ public class MobileInterface {
 	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	public Response displayCart(long data) {
-		logger.info("Show shopping cart");
+		logger.info("Show shopping cart.");
 
 		try{
 			List<SelProduct> selProList = servservice.displayCart(data);
@@ -244,7 +252,7 @@ public class MobileInterface {
 	}
 	
 	/**
-	 * Place order.
+	 * Place an order.
 	 *
 	 * @param data
 	 *            the data
@@ -252,15 +260,35 @@ public class MobileInterface {
 	 */
 	@Path("/placeorder")
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response placeOrder(JSONObject data) {
+	@Consumes(MediaType.TEXT_PLAIN)
+	public Response placeOrder(String data) {
+		logger.info("place an order.");
 		try{
+			JSONObject jsonObject = new JSONObject(data);
+			Order order = new ObjectMapper().readValue(jsonObject.getJSONObject("order").toString(), Order.class);
+			Payment payment = new ObjectMapper().readValue(jsonObject.getJSONObject("payment").toString(), Payment.class);
+			Card card = null;
+			if (jsonObject.has("card"))
+				card = new ObjectMapper().readValue(jsonObject.getJSONObject("card").toString(), Card.class);
+			JSONArray orderArray = jsonObject.getJSONArray("cartArray");
+			List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
+			for (int i = 0; i < orderArray.length(); i++){
+				OrderProduct orderProduct = new ObjectMapper()
+						.readValue(orderArray.getJSONObject(i).toString(), OrderProduct.class);
+				orderProducts.add(orderProduct);
+			}
+			int res = servservice.placeOrder(order, payment, orderProducts, card);
 			
+			Map<String, Object> map = new LinkedHashMap<>();
+			map.put("result", res == 1 ? "successful" : "Failed");
+			map.put("count", 0);
+			map.put("data", "");
+			return Response.ok(map, MediaType.TEXT_PLAIN).build();
 		}
 		catch(Exception e){
-			
+			logger.fatal(e.getMessage());
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
-		return null;
 	}
 	
 	
@@ -273,7 +301,7 @@ public class MobileInterface {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getQuestions() {
-		logger.info("Show questions");
+		logger.info("Show questions.");
 
 		try{
 			List<SecQuestion> quesList = servservice.getQuestions();

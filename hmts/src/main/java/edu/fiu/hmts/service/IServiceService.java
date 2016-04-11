@@ -7,11 +7,11 @@ import java.util.List;
 
 import edu.fiu.hmts.domain.Card;
 import edu.fiu.hmts.domain.Order;
+import edu.fiu.hmts.domain.OrderProduct;
 import edu.fiu.hmts.domain.Payment;
 import edu.fiu.hmts.domain.Product;
 import edu.fiu.hmts.domain.SecQuestion;
 import edu.fiu.hmts.domain.SelProduct;
-import edu.fiu.hmts.domain.User;
 
 /**
  * The Interface IServiceService.
@@ -43,7 +43,7 @@ public interface IServiceService {
 	 * @param productid
 	 *            the productid
 	 */
-	public int removeProduct(long userid, int productid);
+	public int removeProduct(long userid, long productid);
 	
 	/**
 	 * Display the cart.
@@ -57,10 +57,17 @@ public interface IServiceService {
 	/**
 	 * Place order.
 	 *
-	 * @param userid
-	 *            the userid
+	 * @param order
+	 *            the order
+	 * @param payment
+	 *            the payment
+	 * @param orderProducts
+	 *            the order products
+	 * @param card
+	 *            the card
+	 * @return the int
 	 */
-	public int placeOrder(User user, Order order, Payment payment, Card card);
+	public int placeOrder(Order order, Payment payment, List<OrderProduct> orderProducts, Card card);
 	
 	/**
 	 * Gets the questions.
