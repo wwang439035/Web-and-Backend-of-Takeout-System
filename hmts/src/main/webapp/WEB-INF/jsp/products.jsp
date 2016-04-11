@@ -29,7 +29,7 @@
 		<input name="func" type="hidden" value="${func}" />
 		<input name="proList" id="proList" type="hidden" value='${proList}' />
 	</form>
-	<div class="modal modal-transparent fade" id="modal-transparent" tabindex="-1" role="dialog" aria-labelledby="addProductLabel" aria-hidden="true">
+	<div class="modal modal-transparent fade" style="position:absolute;top:50%;margin-top:-250px;" id="modal-transparent" tabindex="-1" role="dialog" aria-labelledby="addProductLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	    	<jsp:include page="addproduct.jsp" flush="true">
