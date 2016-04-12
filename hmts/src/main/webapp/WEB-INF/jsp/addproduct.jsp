@@ -51,7 +51,7 @@
 					<div class="col-md-9">
 						<select id="type" name="type" class="form-control">
 							<option>Please select</option>
-							<option>Entree</option>
+							<option>Dish</option>
 							<option>Side</option>
 							<option>Drink</option>
 						</select>
