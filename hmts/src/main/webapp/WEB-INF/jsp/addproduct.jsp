@@ -70,7 +70,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label" for="descrip">Brief description</label>
 					<div class="col-md-9">
-						<textarea class="form-control" id="brief" name="description" placeholder="Please enter a brief description here..." rows="5"></textarea>
+						<textarea class="form-control" id="brief" name="brief" placeholder="Please enter a brief description here..." rows="5"></textarea>
 					</div>
 				</div>
 								
