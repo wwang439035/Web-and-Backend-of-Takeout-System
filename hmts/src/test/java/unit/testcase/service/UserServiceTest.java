@@ -154,6 +154,21 @@ public class UserServiceTest {
 		assertEquals(null, user.getPhone());
 		assertEquals(null, user.getRole());
 	}
+	
+	@Test
+	public final void testRegisterInvalidType() {
+		Mockito.when(mobileRegister.register(Mockito.any(String.class), Mockito.any(String.class)
+				, Mockito.any(String.class), Mockito.any(String.class), Mockito.any(String.class)
+				, Mockito.any(String.class), Mockito.any(int.class), Mockito.any(String.class))).thenReturn(userNU);
+		User user = userService.register("", "123456", "David", "Chris", "(305)233-9483"
+				, "4", 1, "Paul", -1);
+		assertEquals(null, user.getUsername());
+		assertEquals(null, user.getPassword());
+		assertEquals(null, user.getFirstName());
+		assertEquals(null, user.getLastName());
+		assertEquals(null, user.getPhone());
+		assertEquals(null, user.getRole());
+	}
 
 	@Test
 	public final void testLoginWebSuccess() {
@@ -199,6 +214,16 @@ public class UserServiceTest {
 		assertEquals(null, user.getPassword());
 		assertEquals(null, user.getRole());
 	}
+	
+	@Test
+	public final void testLoginInvalidType() {
+		Mockito.when(userMapper.selectByExample(Mockito.any())).thenReturn(userListF);
+		User user = userService.login("peter@gmail.com", "111111", -1);
+		assertEquals(-1L, user.getUserId(), 1);
+		assertEquals(null, user.getUsername());
+		assertEquals(null, user.getPassword());
+		assertEquals(null, user.getRole());
+	}
 
 	@Test
 	public final void testLogout() {
@@ -211,5 +236,24 @@ public class UserServiceTest {
 		Mockito.when(functionRoleMapper.selectByExample(Mockito.any(FunctionRoleExample.class))).thenReturn(functionRoleKeys);
 		String res = userService.rolesControl(webUserS);
 		assertEquals("1,2,", res);
+	}
+	
+	@Test
+	public final void testDisplayUsersSuccess() {
+		Mockito.when(userMapper.selectByExample(Mockito.any())).thenReturn(webUserList);
+		List<User> list = userService.displayUsers();
+		assertEquals(1, list.size());
+		assertEquals("peter@gmail.com", list.get(0).getUsername());
+		assertEquals("Peter", list.get(0).getFirstName());
+		assertEquals("John", list.get(0).getLastName());
+		assertEquals("(305)837-4827", list.get(0).getPhone());
+		assertEquals("2", list.get(0).getRole());
+	}
+	
+	@Test
+	public final void testDisplayUsersNoUser() {
+		Mockito.when(userMapper.selectByExample(Mockito.any())).thenReturn(userListF);
+		List<User> list = userService.displayUsers();
+		assertEquals(0, list.size());
 	}
 }

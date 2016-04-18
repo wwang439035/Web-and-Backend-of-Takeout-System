@@ -122,6 +122,11 @@ public class UserService implements IUserService {
 			userExample.or().andUsernameEqualTo(username).andPasswordEqualTo(password).andRoleEqualTo("3");
 			userExample.or().andUsernameEqualTo(username).andPasswordEqualTo(password).andRoleEqualTo("4");
 		}
+		else{
+			User user = new User();
+			user.setUserId(-1L);
+			return user;
+		}
 			
 		List<User> userConfirm = userMapper.selectByExample(userExample);
 		if (userConfirm.size() == 0){

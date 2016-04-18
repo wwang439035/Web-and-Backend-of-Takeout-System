@@ -11,9 +11,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import edu.fiu.hmts.dao.hmts_repos.OrderMapper;
 import edu.fiu.hmts.dao.hmts_repos.ProductMapper;
+import edu.fiu.hmts.domain.hmts_repos.Order;
 import edu.fiu.hmts.domain.hmts_repos.Product;
 import edu.fiu.hmts.domain.hmts_repos.ProductExample;
 import edu.fiu.hmts.service.impl.OperationService;
@@ -26,13 +29,20 @@ public class OperationServiceTest {
 	
 	@Mock
 	ProductMapper productMapper;
+	
+	@Mock
+	OrderMapper orderMapper;
 
 	List<Product> proListDisplay = new ArrayList<>();
+	
+	List<Order> orderList = new ArrayList<>();
 	
 	Product product = new Product();
 	
 	@Before
 	public void setUp() throws Exception {
+		MockitoAnnotations.initMocks(this);
+		
 		Product product1 = new Product();
 		product1.setName("Turkey breast");
 		product1.setType("Dish");
@@ -55,6 +65,14 @@ public class OperationServiceTest {
 		product.setType("Side");
 		product.setPrice(10.99);
 		product.setBrief("Pork, Onions and Cheese.");
+		
+		Order order = new Order();
+		order.setPhone("(305)474-2378");
+		order.setShipAddress("123 NW 14th St, Miami FL 33100");
+		order.setStatus("processing");
+		order.setOrderId(5L);
+		order.setUserId(3L);
+		orderList.add(order);
 	}
 
 	@Test
@@ -129,5 +147,22 @@ public class OperationServiceTest {
 		Mockito.when(productMapper.insert(Mockito.any(Product.class))).thenReturn(-1);
 		int res = operaService.createProduct(null);
 		assertEquals(-1, res);
+	}
+	
+	@Test
+	public final void testDisplayOrdersSuccess() {
+		Mockito.when(orderMapper.selectByExample(Mockito.any())).thenReturn(orderList);
+		List<Order> list = operaService.displayOrders();
+		assertEquals(1, list.size());
+		assertEquals("(305)474-2378", list.get(0).getPhone());
+		assertEquals("123 NW 14th St, Miami FL 33100", list.get(0).getShipAddress());
+		assertEquals("processing", list.get(0).getStatus());
+	}
+	
+	@Test
+	public final void testDisplayOrdersNoQuestion() {
+		Mockito.when(orderMapper.selectByExample(Mockito.any())).thenReturn(new ArrayList<Order>());
+		List<Order> list = operaService.displayOrders();
+		assertEquals(0, list.size());
 	}
 }

@@ -3,7 +3,6 @@
  */
 package edu.fiu.hmts.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -42,14 +41,8 @@ public class OperationService implements IOperationService {
 	 */
 	@Override
 	public List<Product> displayProducts() {
-		try {
-			List<Product> products = productMapper.selectByExample(new ProductExample());
-			return products;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return new ArrayList<Product>();
-		}
+		List<Product> products = productMapper.selectByExample(new ProductExample());
+		return products;
 	}
 
 	/**
@@ -60,14 +53,8 @@ public class OperationService implements IOperationService {
 	 */
 	@Override
 	public int createProduct(Product product) {
-		try{
-			int res = productMapper.insert(product);
-			return res;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return -1;
-		}
+		int res = productMapper.insert(product);
+		return res;
 	}
 
 	/**
@@ -77,14 +64,8 @@ public class OperationService implements IOperationService {
 	 */
 	@Override
 	public List<Order> displayOrders() {
-		try {
-			List<Order> orders = orderMapper.selectByExample(new OrderExample());
-			return orders;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return new ArrayList<Order>();
-		}
+		List<Order> orders = orderMapper.selectByExample(new OrderExample());
+		return orders;
 	}
 
 }

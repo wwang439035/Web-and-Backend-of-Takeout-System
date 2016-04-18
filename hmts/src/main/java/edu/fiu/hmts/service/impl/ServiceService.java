@@ -3,7 +3,6 @@
  */
 package edu.fiu.hmts.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -75,16 +74,10 @@ public class ServiceService implements IServiceService {
 	 */
 	@Override
 	public List<Product> displayMenu() {
-		try {
-			ProductExample productExample = new ProductExample();
-			productExample.setOrderByClause("type desc");
-			List<Product> products = productMapper.selectByExample(productExample);
-			return products;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return new ArrayList<Product>();
-		}
+		ProductExample productExample = new ProductExample();
+		productExample.setOrderByClause("type desc");
+		List<Product> products = productMapper.selectByExample(productExample);
+		return products;
 	}
 
 	/**
@@ -96,14 +89,8 @@ public class ServiceService implements IServiceService {
 	 */
 	@Override
 	public int selectProduct(SelProduct product) {
-		try {
-			int res = selProductMapper.insert(product);
-			return res;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return -1;
-		}
+		int res = selProductMapper.insert(product);
+		return res;
 	}
 
 	/**
@@ -117,18 +104,12 @@ public class ServiceService implements IServiceService {
 	 */
 	@Override
 	public int removeProduct(long userid, long productid) {
-		try {
-			SelProductExample selProductExample = new SelProductExample();
-			Criteria criteria = selProductExample.createCriteria();
-			criteria.andProductIdEqualTo(productid);
-			criteria.andUserIdEqualTo(userid);
-			int res = selProductMapper.deleteByExample(selProductExample);
-			return res;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return -1;
-		}
+		SelProductExample selProductExample = new SelProductExample();
+		Criteria criteria = selProductExample.createCriteria();
+		criteria.andProductIdEqualTo(productid);
+		criteria.andUserIdEqualTo(userid);
+		int res = selProductMapper.deleteByExample(selProductExample);
+		return res;
 	}
 
 	/**
@@ -140,17 +121,11 @@ public class ServiceService implements IServiceService {
 	 */
 	@Override
 	public List<SelProduct> displayCart(long userid) {
-		try {
-			SelProductExample selProductExample = new SelProductExample();
-			Criteria criteria = selProductExample.createCriteria();
-			criteria.andUserIdEqualTo(userid);
-			List<SelProduct> selProducts = selProductMapper.selectByExample(selProductExample);
-			return selProducts;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return new ArrayList<SelProduct>();
-		}
+		SelProductExample selProductExample = new SelProductExample();
+		Criteria criteria = selProductExample.createCriteria();
+		criteria.andUserIdEqualTo(userid);
+		List<SelProduct> selProducts = selProductMapper.selectByExample(selProductExample);
+		return selProducts;
 	}
 
 	/**
@@ -171,37 +146,38 @@ public class ServiceService implements IServiceService {
 		try {
 			long orderId = -1;
 			long paymentId = -1;
-			int res = -1;
+			int res = 0;
 			
 			if (orderProducts.size() > 0){
 				res = orderMapper.insert(order);
-				if (res == -1) return res;
+				if (res == 0) return res;
 				orderId = order.getOrderId();
+			}else {
+				return res;
 			}
 			
 			for (OrderProduct orderProduct : orderProducts) {
 				orderProduct.setOrderId(orderId);
-				orderProductMapper.insert(orderProduct);
-				if (res == -1) return res;
+				res = orderProductMapper.insert(orderProduct);
+				if (res == 0) return res;
 			}
 			
 			payment.setOrderId(orderId);
-			payment.setPaymentId(0L);
-			paymentMapper.insertSelective(payment);
-			if (res == -1) return res;
+			res = paymentMapper.insertSelective(payment);
+			if (res == 0) return res;
 			paymentId = payment.getPaymentId();
 			
 			if ("1".equals(payment.getMethod())){
 				card.setPaymentId(paymentId);
-				cardMapper.insert(card);
-				if (res == -1) return res;
+				res = cardMapper.insert(card);
+				if (res == 0) return res;
 			}
 				
 			return res;
 		}
 		catch(Exception e){
 			logger.fatal(e.getMessage());
-			return -1;
+			return 0;
 		}
 	}
 
@@ -212,14 +188,8 @@ public class ServiceService implements IServiceService {
 	 */
 	@Override
 	public List<SecQuestion> getQuestions() {
-		try {
-			List<SecQuestion> questions = secQuestionMapper.selectByExample(new SecQuestionExample());
-			return questions;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return new ArrayList<SecQuestion>();
-		}
+		List<SecQuestion> questions = secQuestionMapper.selectByExample(new SecQuestionExample());
+		return questions;
 	}
 
 }
