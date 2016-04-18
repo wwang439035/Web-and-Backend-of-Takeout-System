@@ -129,9 +129,11 @@ public class UserService implements IUserService {
 			user.setUserId(-1L);
 			return user;
 		}
-		func = rolesControl(userConfirm.get(0));
-		userConfirm.get(0).setTag(func);
-		
+		if (type == 0){
+			func = rolesControl(userConfirm.get(0));
+			userConfirm.get(0).setTag(func);
+		}
+
 		return userConfirm.get(0);
 	}
 
@@ -158,7 +160,7 @@ public class UserService implements IUserService {
 	 *            the user
 	 * @return the string
 	 */
-	protected String rolesControl(User user) {
+	public String rolesControl(User user) {
 		String func = "";
 		FunctionRoleExample functionRoleExample = new FunctionRoleExample();
 		FunctionRoleExample.Criteria criteria2 = functionRoleExample.createCriteria();
