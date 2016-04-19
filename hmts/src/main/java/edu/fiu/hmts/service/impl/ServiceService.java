@@ -75,7 +75,7 @@ public class ServiceService implements IServiceService {
 	@Override
 	public List<Product> displayMenu() {
 		ProductExample productExample = new ProductExample();
-		productExample.setOrderByClause("type desc");
+		productExample.setOrderByClause("type asc");
 		List<Product> products = productMapper.selectByExample(productExample);
 		return products;
 	}
