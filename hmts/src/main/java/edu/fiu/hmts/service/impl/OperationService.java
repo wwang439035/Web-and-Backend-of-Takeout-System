@@ -5,8 +5,6 @@ package edu.fiu.hmts.service.impl;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +29,7 @@ public class OperationService implements IOperationService {
 	@Autowired
 	private OrderMapper orderMapper;
 	
-	protected final Log logger = LogFactory.getLog(getClass());
+	//protected final Log logger = LogFactory.getLog(getClass());
 	
 	
 	/**

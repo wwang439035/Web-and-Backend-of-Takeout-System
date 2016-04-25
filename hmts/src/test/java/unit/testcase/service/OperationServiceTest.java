@@ -94,6 +94,13 @@ public class OperationServiceTest {
 		assertEquals("Drink", proList.get(2).getType());
 		assertEquals(1.99, proList.get(2).getPrice(), 0.01);
 	}
+	
+	@Test
+	public void testDisplayProductsNoProduct() {
+		Mockito.when(productMapper.selectByExample(Mockito.any(ProductExample.class))).thenReturn(new ArrayList<Product>());
+		List<Product> proList = operaService.displayProducts();
+		assertEquals(0, proList.size());
+	}
 
 	@Test
 	public void testCreateProductSuccess() {
@@ -143,13 +150,6 @@ public class OperationServiceTest {
 	}
 	
 	@Test
-	public void testCreateProductException() {
-		Mockito.when(productMapper.insert(Mockito.any(Product.class))).thenReturn(-1);
-		int res = operaService.createProduct(null);
-		assertEquals(-1, res);
-	}
-	
-	@Test
 	public final void testDisplayOrdersSuccess() {
 		Mockito.when(orderMapper.selectByExample(Mockito.any())).thenReturn(orderList);
 		List<Order> list = operaService.displayOrders();
@@ -160,7 +160,7 @@ public class OperationServiceTest {
 	}
 	
 	@Test
-	public final void testDisplayOrdersNoQuestion() {
+	public final void testDisplayOrdersNoOrder() {
 		Mockito.when(orderMapper.selectByExample(Mockito.any())).thenReturn(new ArrayList<Order>());
 		List<Order> list = operaService.displayOrders();
 		assertEquals(0, list.size());

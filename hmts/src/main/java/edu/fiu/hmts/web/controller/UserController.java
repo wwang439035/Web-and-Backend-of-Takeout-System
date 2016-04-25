@@ -66,6 +66,7 @@ public class UserController extends MultiActionController {
 			return page;
 		}
 		catch(Exception e){
+			//e.printStackTrace();
 			logger.fatal(e.getMessage());
 			page.setViewName("login");
 			return page;
@@ -88,6 +89,7 @@ public class UserController extends MultiActionController {
 			throws Exception {
 		logger.info("User is signing out the system");
 		
+		userService.logout(0L);
 		ModelAndView loginView = new ModelAndView(new RedirectView("front.do"));
 		loginView.addObject("mode", "dispatcher");
 		loginView.addObject("target", "login");
@@ -107,39 +109,34 @@ public class UserController extends MultiActionController {
 	public ModelAndView register(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView usresView = new ModelAndView();
 		usresView.setViewName("usres");
-		try{
-			Random random = new Random();
-			int roleCode = -1;
-			String role = request.getParameter("roleNew");
-			String[] roleList = {"Manager", "Staff", "Delivery Man"};
-			for (int i = 0; i < roleList.length; i++)
-				if (roleList[i].equals(role))
-					roleCode = i + 1;
-			
-			if (roleCode != -1)
-				userService.register(request.getParameter("usernameNew")
-						, String.valueOf((int)(100000 + random.nextFloat() * 100000))
-						, request.getParameter("firstNameNew")
-						, request.getParameter("lastNameNew")
-						, request.getParameter("phone")
-						, String.valueOf(roleCode)
-						, -1, "", 0);
 
-			List<User> userList = userService.displayUsers();
-			String object = JSONObject.valueToString(userList);
-			
-			usresView.setViewName("users");
-			usresView.addObject("userList", object);
-			usresView.addObject("userId", request.getParameter("userId"));
-			usresView.addObject("role", request.getParameter("role"));
-			usresView.addObject("firstName", request.getParameter("firstName"));
-			usresView.addObject("func", request.getParameter("func"));
-			return usresView;
-			
-		}catch(Exception e){
-			logger.fatal(e.getMessage());
-			return usresView;
-		}
+		Random random = new Random();
+		int roleCode = -1;
+		String role = request.getParameter("roleNew");
+		String[] roleList = {"Manager", "Staff", "Delivery Man"};
+		for (int i = 0; i < roleList.length; i++)
+			if (roleList[i].equals(role))
+				roleCode = i + 1;
+		
+		if (roleCode != -1)
+			userService.register(request.getParameter("usernameNew")
+					, String.valueOf((int)(100000 + random.nextFloat() * 100000))
+					, request.getParameter("firstNameNew")
+					, request.getParameter("lastNameNew")
+					, request.getParameter("phone")
+					, String.valueOf(roleCode)
+					, -1, "", 0);
+
+		List<User> userList = userService.displayUsers();
+		String object = JSONObject.valueToString(userList);
+		
+		usresView.setViewName("users");
+		usresView.addObject("userList", object);
+		usresView.addObject("userId", request.getParameter("userId"));
+		usresView.addObject("role", request.getParameter("role"));
+		usresView.addObject("firstName", request.getParameter("firstName"));
+		usresView.addObject("func", request.getParameter("func"));
+		return usresView;	
 	}
 	
 	/**
@@ -154,23 +151,17 @@ public class UserController extends MultiActionController {
 	public ModelAndView displayUsers(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("Show user list");
 
-		try{
-			List<User> userList = userService.displayUsers();
-			String object = JSONObject.valueToString(userList);
-			
-			ModelAndView userView = new ModelAndView();
-			userView.setViewName("users");
-			userView.addObject("userList", object);
-			userView.addObject("userId", request.getParameter("userId"));
-			userView.addObject("role", request.getParameter("role"));
-			userView.addObject("firstName", request.getParameter("firstName"));
-			userView.addObject("func", request.getParameter("func"));
-			
-			return userView;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return new ModelAndView();
-		}
+		List<User> userList = userService.displayUsers();
+		String object = JSONObject.valueToString(userList);
+		
+		ModelAndView userView = new ModelAndView();
+		userView.setViewName("users");
+		userView.addObject("userList", object);
+		userView.addObject("userId", request.getParameter("userId"));
+		userView.addObject("role", request.getParameter("role"));
+		userView.addObject("firstName", request.getParameter("firstName"));
+		userView.addObject("func", request.getParameter("func"));
+		
+		return userView;	
 	}
 }

@@ -42,24 +42,18 @@ public class OperationController extends MultiActionController {
 	public ModelAndView displayProducts(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("Show product list");
 
-		try{
-			List<Product> proList = operaService.displayProducts();
-			String object = JSONObject.valueToString(proList);
-			
-			ModelAndView productView = new ModelAndView();
-			productView.setViewName("products");
-			productView.addObject("proList", object);
-			productView.addObject("userId", request.getParameter("userId"));
-			productView.addObject("role", request.getParameter("role"));
-			productView.addObject("firstName", request.getParameter("firstName"));
-			productView.addObject("func", request.getParameter("func"));
-			
-			return productView;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return new ModelAndView();
-		}
+		List<Product> proList = operaService.displayProducts();
+		String object = JSONObject.valueToString(proList);
+		
+		ModelAndView productView = new ModelAndView();
+		productView.setViewName("products");
+		productView.addObject("proList", object);
+		productView.addObject("userId", request.getParameter("userId"));
+		productView.addObject("role", request.getParameter("role"));
+		productView.addObject("firstName", request.getParameter("firstName"));
+		productView.addObject("func", request.getParameter("func"));
+		
+		return productView;	
 	}
 	
 	
@@ -116,23 +110,17 @@ public class OperationController extends MultiActionController {
 	public ModelAndView displayOrders(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("Show order list");
 
-		try{
-			List<Order> orderList = operaService.displayOrders();
-			String object = JSONObject.valueToString(orderList);
-			
-			ModelAndView orderView = new ModelAndView();
-			orderView.setViewName("orders");
-			orderView.addObject("orderList", object);
-			orderView.addObject("userId", request.getParameter("userId"));
-			orderView.addObject("role", request.getParameter("role"));
-			orderView.addObject("firstName", request.getParameter("firstName"));
-			orderView.addObject("func", request.getParameter("func"));
-			
-			return orderView;
-		}
-		catch(Exception e){
-			logger.fatal(e.getMessage());
-			return new ModelAndView();
-		}
+		List<Order> orderList = operaService.displayOrders();
+		String object = JSONObject.valueToString(orderList);
+		
+		ModelAndView orderView = new ModelAndView();
+		orderView.setViewName("orders");
+		orderView.addObject("orderList", object);
+		orderView.addObject("userId", request.getParameter("userId"));
+		orderView.addObject("role", request.getParameter("role"));
+		orderView.addObject("firstName", request.getParameter("firstName"));
+		orderView.addObject("func", request.getParameter("func"));
+		
+		return orderView;	
 	}
 }
