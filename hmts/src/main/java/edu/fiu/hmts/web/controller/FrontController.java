@@ -39,21 +39,22 @@ public class FrontController extends MultiActionController {
 			targetView.addObject("func", request.getParameter("func"));
 			
 			switch (targetPage) {
-			case "login":
-				targetView.setViewName("login");
-				break;
-			case "home":
-				targetView.setViewName("home");
-				break;
-			case "contact":
-				targetView.setViewName("contact");
-				break;
-			case "team":
-				targetView.setViewName("team");
-				break;
-	
-			default:
-				break;
+				case "login":
+					targetView.setViewName("login");
+					break;
+				case "home":
+					targetView.setViewName("home");
+					break;
+				case "contact":
+					targetView.setViewName("contact");
+					break;
+				case "team":
+					targetView.setViewName("team");
+					break;
+		
+				default:
+					targetView.setViewName("error");
+					break;
 			}
 			
 			return targetView;
