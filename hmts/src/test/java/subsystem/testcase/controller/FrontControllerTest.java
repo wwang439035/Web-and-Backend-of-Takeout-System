@@ -45,7 +45,7 @@ public class FrontControllerTest {
 					.param("role", "1")
 					.param("firstName", "Administrator")
 					.param("func", "1,2,3,"))
-				.andDo(MockMvcResultHandlers.print())
+				//.andDo(MockMvcResultHandlers.print())
 				.andExpect(status().isOk())
 				.andExpect(view().name("login"))
 				.andExpect(model().attribute("userId", "1"))
@@ -67,7 +67,7 @@ public class FrontControllerTest {
 					.param("role", "1")
 					.param("firstName", "Administrator")
 					.param("func", "1,2,3,"))
-				.andDo(MockMvcResultHandlers.print())
+				//.andDo(MockMvcResultHandlers.print())
 				.andExpect(status().isOk())
 				.andExpect(view().name("home"))
 				.andExpect(model().attribute("userId", "1"))
@@ -89,7 +89,7 @@ public class FrontControllerTest {
 					.param("role", "1")
 					.param("firstName", "Administrator")
 					.param("func", "1,2,3,"))
-				.andDo(MockMvcResultHandlers.print())
+				//.andDo(MockMvcResultHandlers.print())
 				.andExpect(status().isOk())
 				.andExpect(view().name("contact"))
 				.andExpect(model().attribute("userId", "1"))
@@ -111,7 +111,7 @@ public class FrontControllerTest {
 					.param("role", "1")
 					.param("firstName", "Administrator")
 					.param("func", "1,2,3,"))
-				.andDo(MockMvcResultHandlers.print())
+				//.andDo(MockMvcResultHandlers.print())
 				.andExpect(status().isOk())
 				.andExpect(view().name("team"))
 				.andExpect(model().attribute("userId", "1"))
@@ -133,7 +133,7 @@ public class FrontControllerTest {
 					.param("role", "1")
 					.param("firstName", "Administrator")
 					.param("func", "1,2,3,"))
-				.andDo(MockMvcResultHandlers.print())
+				//.andDo(MockMvcResultHandlers.print())
 				.andExpect(status().isOk())
 				.andExpect(view().name("error"));
 		} catch (Exception e) {
@@ -151,7 +151,7 @@ public class FrontControllerTest {
 					.param("role", "1")
 					.param("firstName", "Administrator")
 					.param("func", "1,2,3,"))
-				.andDo(MockMvcResultHandlers.print())
+				//.andDo(MockMvcResultHandlers.print())
 				.andExpect(status().isOk())
 				.andExpect(view().name("home"));
 		} catch (Exception e) {
