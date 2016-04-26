@@ -15,12 +15,12 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.sun.jersey.api.spring.Autowire;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.fiu.hmts.domain.hmts_repos.Card;
 import edu.fiu.hmts.domain.hmts_repos.Order;
@@ -36,12 +36,12 @@ import edu.fiu.hmts.service.IUserService;
 /**
  * The Class MobileInterface.
  */
-@Autowire
+@Service
 @Path("/service")
 public class MobileInterface {
 
 	@Autowired
-	private IServiceService servservice;
+	private IServiceService servService;
 	
 	@Autowired
 	private IUserService userService;
@@ -147,7 +147,7 @@ public class MobileInterface {
 		logger.info("Show menu.");
 
 		try{
-			List<Product> proList = servservice.displayMenu();
+			List<Product> proList = servService.displayMenu();
 			Map<String, Object> map = new LinkedHashMap<>();
 			map.put("result", "successful");
 			map.put("count", proList.size());
@@ -155,6 +155,7 @@ public class MobileInterface {
 			return Response.ok(map, MediaType.APPLICATION_JSON).build();
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			logger.fatal(e.getMessage());
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -175,11 +176,11 @@ public class MobileInterface {
 		Map<String, Object> map = new LinkedHashMap<>();
 
 		try{
-			int res = servservice.selectProduct(selProduct);
+			int res = servService.selectProduct(selProduct);
 			if (res < 1)
 				map.put("result", "failed");
 			else{
-				List<SelProduct> selProList = servservice.displayCart(selProduct.getUserId());
+				List<SelProduct> selProList = servService.displayCart(selProduct.getUserId());
 				map.put("result", "successful");
 				map.put("count", 1);
 				map.put("data", selProList);
@@ -207,11 +208,11 @@ public class MobileInterface {
 		Map<String, Object> map = new LinkedHashMap<>();
 
 		try{
-			int res = servservice.removeProduct(selProduct.getUserId(), selProduct.getProductId());
+			int res = servService.removeProduct(selProduct.getUserId(), selProduct.getProductId());
 			if (res < 1)
 				map.put("result", "failed");
 			else{
-				List<SelProduct> selProList = servservice.displayCart(selProduct.getUserId());
+				List<SelProduct> selProList = servService.displayCart(selProduct.getUserId());
 				map.put("result", "successful");
 				map.put("count", 1);
 				map.put("data", selProList);
@@ -238,7 +239,7 @@ public class MobileInterface {
 		logger.info("Show shopping cart.");
 
 		try{
-			List<SelProduct> selProList = servservice.displayCart(data);
+			List<SelProduct> selProList = servService.displayCart(data);
 			Map<String, Object> map = new LinkedHashMap<>();
 			map.put("result", "successful");
 			map.put("count", selProList.size());
@@ -277,7 +278,7 @@ public class MobileInterface {
 						.readValue(orderArray.getJSONObject(i).toString(), OrderProduct.class);
 				orderProducts.add(orderProduct);
 			}
-			int res = servservice.placeOrder(order, payment, orderProducts, card);
+			int res = servService.placeOrder(order, payment, orderProducts, card);
 			
 			JSONObject map = new JSONObject();
 			map.put("result", res == 1 ? "successful" : "Failed");
@@ -304,7 +305,7 @@ public class MobileInterface {
 		logger.info("Show questions.");
 
 		try{
-			List<SecQuestion> quesList = servservice.getQuestions();
+			List<SecQuestion> quesList = servService.getQuestions();
 			Map<String, Object> map = new LinkedHashMap<>();
 			map.put("result", "successful");
 			map.put("count", quesList.size());
