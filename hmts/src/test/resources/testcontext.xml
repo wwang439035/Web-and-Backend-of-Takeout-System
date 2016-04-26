@@ -17,6 +17,10 @@
     <constructor-arg value="edu.fiu.hmts.service.impl.UserService"/>
   </bean>
   
+  <bean id="servService" class="org.mockito.Mockito" factory-method="mock">
+    <constructor-arg value="edu.fiu.hmts.service.IServiceService"/>
+  </bean>
+  
   <bean id="productMapper" class="org.mockito.Mockito" factory-method="mock">
     <constructor-arg value="edu.fiu.hmts.dao.hmts_repos.ProductMapper"/>
   </bean>
