@@ -320,15 +320,4 @@ public class MobileInterfaceTest extends JerseyTest {
 			e.printStackTrace();
 		}
 	}
-
-	/*@Test
-	public final void testPlaceOrder() {
-		
-	}
-
-	@Test
-	public final void testGetQuestions() {
-		
-	}*/
-
 }
