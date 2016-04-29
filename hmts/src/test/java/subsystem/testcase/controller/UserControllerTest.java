@@ -28,6 +28,11 @@ import edu.fiu.hmts.domain.hmts_repos.FunctionRoleKey;
 import edu.fiu.hmts.domain.hmts_repos.User;
 import edu.fiu.hmts.service.impl.UserService;
 
+/**
+ * The Class UserControllerTest.
+ * @author  Wenbo Wang
+ * @version 1.0, April 2016
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/web-servlet.xml",
@@ -36,26 +41,43 @@ import edu.fiu.hmts.service.impl.UserService;
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class})
 public class UserControllerTest {
 
+	/** The wac. */
 	@Autowired
 	private WebApplicationContext wac;
 	
+	/** The mock mvc. */
 	private MockMvc mockMVC;
 	
+	/** The user service. */
 	@Autowired
 	private UserService userService;
 	
+	/** The user mapper. */
 	@Autowired
 	private UserMapper userMapper;
 	
+	/** The function role mapper. */
 	@Autowired
 	private FunctionRoleMapper functionRoleMapper;
 	
+	/** The mob user s. */
 	User userNU, webUserS, mobUserS;
 	
+	/** The user list f. */
 	List<User> webUserList, mobUserList, userListF;
 	
+	/** The function role keys2. */
 	List<FunctionRoleKey> functionRoleKeys, functionRoleKeys2;
 	
+	/**
+	 * Sets the up.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Before
 	public void setUp() throws Exception {		
 		mockMVC = webAppContextSetup(wac).build();
@@ -100,6 +122,12 @@ public class UserControllerTest {
 		functionRoleKeys2 = new ArrayList<>();
 	}
 
+	/**
+	 * Test login web success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginWebSuccess() {
 		try {
@@ -123,6 +151,12 @@ public class UserControllerTest {
 		}
 	}
 	
+	/**
+	 * Test login web failed.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginWebFailed() {
 		try {
@@ -143,6 +177,12 @@ public class UserControllerTest {
 		}
 	}
 	
+	/**
+	 * Test login web exception.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginWebException() {
 		try {
@@ -162,6 +202,12 @@ public class UserControllerTest {
 		}
 	}
 
+	/**
+	 * Test logout.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLogout() {
 		try {
@@ -179,6 +225,12 @@ public class UserControllerTest {
 		}
 	}
 
+	/**
+	 * Test register web success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRegisterWebSuccess() {
 		try {
@@ -218,6 +270,12 @@ public class UserControllerTest {
 		}
 	}
 	
+	/**
+	 * Test register web failed.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRegisterWebFailed() {
 		try {
@@ -251,6 +309,12 @@ public class UserControllerTest {
 		}
 	}
 
+	/**
+	 * Test display users success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayUsersSuccess() {
 		try {
@@ -283,6 +347,12 @@ public class UserControllerTest {
 		}
 	}
 
+	/**
+	 * Test display users no user.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayUsersNoUser() {
 		try {

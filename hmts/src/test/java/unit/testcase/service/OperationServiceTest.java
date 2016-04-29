@@ -21,24 +21,45 @@ import edu.fiu.hmts.domain.hmts_repos.Product;
 import edu.fiu.hmts.domain.hmts_repos.ProductExample;
 import edu.fiu.hmts.service.impl.OperationService;
 
+/**
+ * The Class OperationServiceTest.
+ * 
+ * @author  Wenbo Wang
+ * @version 1.0, April 2016
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class OperationServiceTest {
 	
+	/** The opera service. */
 	@InjectMocks
 	OperationService operaService;
 	
+	/** The product mapper. */
 	@Mock
 	ProductMapper productMapper;
 	
+	/** The order mapper. */
 	@Mock
 	OrderMapper orderMapper;
 
+	/** The pro list display. */
 	List<Product> proListDisplay = new ArrayList<>();
 	
+	/** The order list. */
 	List<Order> orderList = new ArrayList<>();
 	
+	/** The product. */
 	Product product = new Product();
 	
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
@@ -75,6 +96,12 @@ public class OperationServiceTest {
 		orderList.add(order);
 	}
 
+	/**
+	 * Test display products.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public void testDisplayProducts() {
 		Mockito.when(productMapper.selectByExample(Mockito.any(ProductExample.class))).thenReturn(proListDisplay);
@@ -95,6 +122,12 @@ public class OperationServiceTest {
 		assertEquals(1.99, proList.get(2).getPrice(), 0.01);
 	}
 	
+	/**
+	 * Test display products no product.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public void testDisplayProductsNoProduct() {
 		Mockito.when(productMapper.selectByExample(Mockito.any(ProductExample.class))).thenReturn(new ArrayList<Product>());
@@ -102,6 +135,12 @@ public class OperationServiceTest {
 		assertEquals(0, proList.size());
 	}
 
+	/**
+	 * Test create product success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public void testCreateProductSuccess() {
 		int num = 0;
@@ -113,6 +152,12 @@ public class OperationServiceTest {
 		assertEquals(1, res);
 	}
 	
+	/**
+	 * Test create product no name.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public void testCreateProductNoName() {
 		int num = 0;
@@ -125,6 +170,12 @@ public class OperationServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test create product no type.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public void testCreateProductNoType() {
 		int num = 0;
@@ -137,6 +188,12 @@ public class OperationServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test create product no price.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public void testCreateProductNoPrice() {
 		int num = 0;
@@ -149,6 +206,12 @@ public class OperationServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test display orders success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayOrdersSuccess() {
 		Mockito.when(orderMapper.selectByExample(Mockito.any())).thenReturn(orderList);
@@ -159,6 +222,12 @@ public class OperationServiceTest {
 		assertEquals("processing", list.get(0).getStatus());
 	}
 	
+	/**
+	 * Test display orders no order.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayOrdersNoOrder() {
 		Mockito.when(orderMapper.selectByExample(Mockito.any())).thenReturn(new ArrayList<Order>());

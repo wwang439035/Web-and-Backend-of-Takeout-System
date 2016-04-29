@@ -26,31 +26,54 @@ import edu.fiu.hmts.util.registerstrategy.MobileRegister;
 import edu.fiu.hmts.util.registerstrategy.WebRegister;
 
 
+/**
+ * The Class UserServiceTest.
+ * 
+ * @author  Wenbo Wang
+ * @version 1.0, April 2016
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
+	/** The user service. */
 	@Spy
 	@InjectMocks
 	UserService userService;
 	
+	/** The user mapper. */
 	@Mock
 	UserMapper userMapper;
 	
+	/** The function role mapper. */
 	@Mock
 	FunctionRoleMapper functionRoleMapper;
 	
+	/** The web register. */
 	@Mock
 	WebRegister webRegister;
 	
+	/** The mobile register. */
 	@Mock
 	MobileRegister mobileRegister;
 	
+	/** The mob user s. */
 	User userNU, webUserS, mobUserS;
 	
+	/** The user list f. */
 	List<User> webUserList, mobUserList, userListF;
 	
+	/** The function role keys2. */
 	List<FunctionRoleKey> functionRoleKeys, functionRoleKeys2;
 	
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
@@ -93,6 +116,12 @@ public class UserServiceTest {
 		functionRoleKeys2 = new ArrayList<>();
 	}
 
+	/**
+	 * Test web register success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testWebRegisterSuccess() {
 		Mockito.when(webRegister.register(Mockito.any(String.class), Mockito.any(String.class)
@@ -108,6 +137,12 @@ public class UserServiceTest {
 		assertEquals("2", user.getRole());
 	}
 	
+	/**
+	 * Test web register no username.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testWebRegisterNoUsername() {
 		Mockito.when(webRegister.register(Mockito.any(String.class), Mockito.any(String.class)
@@ -123,6 +158,12 @@ public class UserServiceTest {
 		assertEquals(null, user.getRole());
 	}
 	
+	/**
+	 * Test mobile register success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testMobileRegisterSuccess() {
 		Mockito.when(mobileRegister.register(Mockito.any(String.class), Mockito.any(String.class)
@@ -140,6 +181,12 @@ public class UserServiceTest {
 		assertEquals("Paul", user.getSecAnswer());
 	}
 	
+	/**
+	 * Test mobile register no username.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testMobileRegisterNoUsername() {
 		Mockito.when(mobileRegister.register(Mockito.any(String.class), Mockito.any(String.class)
@@ -155,6 +202,12 @@ public class UserServiceTest {
 		assertEquals(null, user.getRole());
 	}
 	
+	/**
+	 * Test register invalid type.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRegisterInvalidType() {
 		Mockito.when(mobileRegister.register(Mockito.any(String.class), Mockito.any(String.class)
@@ -170,6 +223,12 @@ public class UserServiceTest {
 		assertEquals(null, user.getRole());
 	}
 
+	/**
+	 * Test login web success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginWebSuccess() {
 		try {
@@ -185,6 +244,12 @@ public class UserServiceTest {
 		}
 	}
 	
+	/**
+	 * Test login web failed.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginWebFailed() {
 		Mockito.when(userMapper.selectByExample(Mockito.any())).thenReturn(userListF);
@@ -195,6 +260,12 @@ public class UserServiceTest {
 		assertEquals(null, user.getRole());
 	}
 	
+	/**
+	 * Test login mob success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginMobSuccess() {
 		Mockito.when(userMapper.selectByExample(Mockito.any(UserExample.class))).thenReturn(mobUserList);
@@ -205,6 +276,12 @@ public class UserServiceTest {
 		assertEquals("4", user.getRole());
 	}
 	
+	/**
+	 * Test login mob failed.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginMobFailed() {
 		Mockito.when(userMapper.selectByExample(Mockito.any(UserExample.class))).thenReturn(userListF);
@@ -215,6 +292,12 @@ public class UserServiceTest {
 		assertEquals(null, user.getRole());
 	}
 	
+	/**
+	 * Test login invalid type.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginInvalidType() {
 		Mockito.when(userMapper.selectByExample(Mockito.any())).thenReturn(userListF);
@@ -225,12 +308,24 @@ public class UserServiceTest {
 		assertEquals(null, user.getRole());
 	}
 
+	/**
+	 * Test logout.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLogout() {
 		boolean res = userService.logout(1);
 		assertEquals(true, res);
 	}
 
+	/**
+	 * Test roles control.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRolesControl() {
 		Mockito.when(functionRoleMapper.selectByExample(Mockito.any(FunctionRoleExample.class))).thenReturn(functionRoleKeys);
@@ -238,6 +333,12 @@ public class UserServiceTest {
 		assertEquals("1,2,", res);
 	}
 	
+	/**
+	 * Test display users success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayUsersSuccess() {
 		Mockito.when(userMapper.selectByExample(Mockito.any())).thenReturn(webUserList);
@@ -250,6 +351,12 @@ public class UserServiceTest {
 		assertEquals("2", list.get(0).getRole());
 	}
 	
+	/**
+	 * Test display users no user.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayUsersNoUser() {
 		Mockito.when(userMapper.selectByExample(Mockito.any())).thenReturn(userListF);

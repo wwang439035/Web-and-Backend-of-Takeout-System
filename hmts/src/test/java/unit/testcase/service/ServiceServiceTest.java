@@ -19,49 +19,80 @@ import edu.fiu.hmts.dao.hmts_repos.*;
 import edu.fiu.hmts.domain.hmts_repos.*;
 import edu.fiu.hmts.service.impl.ServiceService;
 
+/**
+ * The Class ServiceServiceTest.
+ * 
+ * @author  Wenbo Wang
+ * @version 1.0, April 2016
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ServiceServiceTest {
 
+	/** The serv service. */
 	@InjectMocks
 	ServiceService servService;
 	
+	/** The sec question mapper. */
 	@Mock
 	SecQuestionMapper secQuestionMapper;
 	
+	/** The product mapper. */
 	@Mock
 	ProductMapper productMapper;
 	
+	/** The sel product mapper. */
 	@Mock
 	SelProductMapper selProductMapper;
 	
+	/** The order mapper. */
 	@Mock
 	OrderMapper orderMapper;
 	
+	/** The order product mapper. */
 	@Mock
 	OrderProductMapper orderProductMapper;
 	
+	/** The payment mapper. */
 	@Mock
 	PaymentMapper paymentMapper;
 	
+	/** The card mapper. */
 	@Mock
 	CardMapper cardMapper;
 	
+	/** The products. */
 	List<Product> products = new ArrayList<>();
 	
+	/** The sel products. */
 	List<SelProduct> selProducts = new ArrayList<>();
 	
+	/** The sel product. */
 	SelProduct selProduct = new SelProduct();
 	
+	/** The order. */
 	Order order = new Order();
 	
+	/** The payment. */
 	Payment payment = new Payment();
 	
+	/** The ord products. */
 	List<OrderProduct> ordProducts = new ArrayList<>();
 	
+	/** The card. */
 	Card card = new Card();
 	
+	/** The questions. */
 	List<SecQuestion> questions = new ArrayList<>();
 	
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Before
 	public void setUp() throws Exception {
 		Product product1 = new Product();
@@ -130,6 +161,12 @@ public class ServiceServiceTest {
 		questions.add(secQuestion);
 	}
 
+	/**
+	 * Test display menu.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayMenu() {
 		Mockito.when(productMapper.selectByExample(Mockito.any())).thenReturn(products);
@@ -150,6 +187,12 @@ public class ServiceServiceTest {
 		assertEquals(1.99, proList.get(2).getPrice(), 0.01);
 	}
 
+	/**
+	 * Test select product success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testSelectProductSuccess() {
 		Mockito.when(selProductMapper.insert(Mockito.any())).thenReturn(1);
@@ -157,6 +200,12 @@ public class ServiceServiceTest {
 		assertEquals(1, res);
 	}
 	
+	/**
+	 * Test select product no pro id.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testSelectProductNoProId() {
 		selProduct.setProductId(null);
@@ -165,6 +214,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test select product no qty.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testSelectProductNoQty() {
 		selProduct.setProductId(1L);
@@ -174,6 +229,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test select product no user id.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testSelectProductNoUserId() {
 		selProduct.setQuantity(5);
@@ -183,6 +244,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 
+	/**
+	 * Test remove product success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRemoveProductSuccess() {
 		Mockito.when(selProductMapper.deleteByExample(Mockito.any())).thenReturn(1);
@@ -191,6 +258,12 @@ public class ServiceServiceTest {
 		assertEquals(1, res);
 	}
 	
+	/**
+	 * Test remove product valid user id.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRemoveProductValidUserId() {
 		Mockito.when(selProductMapper.deleteByExample(Mockito.any())).thenReturn(0);
@@ -199,6 +272,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test remove product invalid user id.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRemoveProductInvalidUserId() {
 		Mockito.when(selProductMapper.deleteByExample(Mockito.any())).thenReturn(0);
@@ -207,6 +286,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test remove product valid pro id.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRemoveProductValidProId() {
 		Mockito.when(selProductMapper.deleteByExample(Mockito.any())).thenReturn(0);
@@ -215,6 +300,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 
+	/**
+	 * Test display cart success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayCartSuccess() {
 		Mockito.when(selProductMapper.selectByExample(Mockito.any())).thenReturn(selProducts);
@@ -231,6 +322,12 @@ public class ServiceServiceTest {
 		assertEquals(3L, selProList.get(1).getUserId(), 1);
 	}
 	
+	/**
+	 * Test display cart valid user id.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayCartValidUserId() {
 		List<SelProduct> list = new ArrayList<>();
@@ -240,6 +337,12 @@ public class ServiceServiceTest {
 		assertEquals(0, selProList.size());
 	}
 	
+	/**
+	 * Test display cart invalid user id.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayCartInvalidUserId() {
 		List<SelProduct> list = new ArrayList<>();
@@ -249,6 +352,12 @@ public class ServiceServiceTest {
 		assertEquals(0, selProList.size());
 	}
 
+	/**
+	 * Test place orderby cash success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testPlaceOrderbyCashSuccess() {
 		Mockito.when(orderMapper.insert(Mockito.any())).thenReturn(1);
@@ -258,6 +367,12 @@ public class ServiceServiceTest {
 		assertEquals(1, res);
 	}
 	
+	/**
+	 * Test place orderby cash invalid order.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testPlaceOrderbyCashInvalidOrder() {
 		order.setUserId(null);
@@ -268,6 +383,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test place orderby cash null order.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testPlaceOrderbyCashNullOrder() {
 		Mockito.when(orderMapper.insert(Mockito.any())).thenReturn(1);
@@ -277,6 +398,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test place orderby cash no ord product.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testPlaceOrderbyCashNoOrdProduct() {
 		order.setUserId(3L);
@@ -289,6 +416,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test place orderby cash invalid ord product.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testPlaceOrderbyCashInvalidOrdProduct() {
 		ordProducts.get(0).setName(null);
@@ -299,6 +432,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test place orderby cash invalid payment.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testPlaceOrderbyCashInvalidPayment() {
 		ordProducts.get(0).setName("Pizza");
@@ -310,6 +449,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 	
+	/**
+	 * Test place orderby card success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testPlaceOrderbyCardSuccess() {
 		payment.setMethod("1");
@@ -321,6 +466,12 @@ public class ServiceServiceTest {
 		assertEquals(1, res);
 	}
 	
+	/**
+	 * Test place orderby card invalid card.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testPlaceOrderbyCardInvalidCard() {
 		payment.setMethod("1");
@@ -333,6 +484,12 @@ public class ServiceServiceTest {
 		assertEquals(0, res);
 	}
 
+	/**
+	 * Test get questions success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testGetQuestionsSuccess() {
 		Mockito.when(secQuestionMapper.selectByExample(Mockito.any())).thenReturn(questions);
@@ -343,6 +500,12 @@ public class ServiceServiceTest {
 		assertEquals("What's your favorite sport?", secQuesList.get(0).getContent());
 	}
 	
+	/**
+	 * Test get questions no question.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testGetQuestionsNoQuestion() {
 		Mockito.when(secQuestionMapper.selectByExample(Mockito.any())).thenReturn(new ArrayList<SecQuestion>());

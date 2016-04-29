@@ -30,6 +30,12 @@ import edu.fiu.hmts.domain.hmts_repos.Product;
 import edu.fiu.hmts.service.impl.OperationService;
 
 
+/**
+ * The Class OperationControllerTest.
+ * 
+ * @author  Wenbo Wang
+ * @version 1.0, April 2016
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/web-servlet.xml",
@@ -38,32 +44,52 @@ import edu.fiu.hmts.service.impl.OperationService;
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class})
 public class OperationControllerTest {
 	
+	/** The wac. */
 	@Autowired
 	private WebApplicationContext wac;
 	
+	/** The mock mvc. */
 	private MockMvc mockMVC;
 
+	/** The operation service. */
 	@Autowired
 	private OperationService operationService;
 	
+	/** The product mapper. */
 	@Autowired
 	private ProductMapper productMapper;
 	
+	/** The order mapper. */
 	@Autowired
 	private OrderMapper orderMapper;
 
+	/** The pro list. */
 	List<Product> proList = new ArrayList<>();
 	
+	/** The pro list failed. */
 	List<Product> proListFailed = new ArrayList<>();
 	
+	/** The order list. */
 	List<Order> orderList = new ArrayList<>();
 	
+	/** The product. */
 	Product product = new Product();
 	
+	/** The products. */
 	String products = "";
 	
+	/** The product failed. */
 	String productFailed = "";
 	
+	/**
+	 * Sets the up.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		mockMVC = webAppContextSetup(wac).build();
@@ -108,6 +134,12 @@ public class OperationControllerTest {
 		orderList.add(order);
 	}
 
+	/**
+	 * Test display products success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayProductsSuccess() {
 		try {
@@ -132,6 +164,12 @@ public class OperationControllerTest {
 		}
 	}
 	
+	/**
+	 * Test display products no product.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayProductsNoProduct() {
 		try {
@@ -156,6 +194,12 @@ public class OperationControllerTest {
 		}
 	}
 
+	/**
+	 * Test create product success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testCreateProductSuccess() {
 		try {
@@ -186,6 +230,12 @@ public class OperationControllerTest {
 		}
 	}
 	
+	/**
+	 * Test create product no name.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testCreateProductNoName() {
 		try {
@@ -216,6 +266,12 @@ public class OperationControllerTest {
 		}
 	}
 	
+	/**
+	 * Test create product no type.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testCreateProductNoType() {
 		try {
@@ -246,6 +302,12 @@ public class OperationControllerTest {
 		}
 	}
 	
+	/**
+	 * Test create product no price.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testCreateProductNoPrice() {
 		try {
@@ -273,6 +335,12 @@ public class OperationControllerTest {
 		}
 	}
 	
+	/**
+	 * Test display orders success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayOrdersSuccess() {
 		try {
@@ -301,6 +369,12 @@ public class OperationControllerTest {
 		}
 	}
 
+	/**
+	 * Test display orders no order.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayOrdersNoOrder() {
 		try {

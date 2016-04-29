@@ -37,39 +37,66 @@ import edu.fiu.hmts.service.impl.UserService;
 import edu.fiu.hmts.web.service.MobileInterface;
 import net.minidev.json.JSONObject;
 
+/**
+ * The Class MobileInterfaceTest.
+ * 
+ * @author  Wenbo Wang
+ * @version 1.0, April 2016
+ */
 public class MobileInterfaceTest extends JerseyTest {
 
+	/** The serv service. */
 	private ServiceService servService;
 	
+	/** The user service. */
 	@Mock
 	private UserService userService;
 	
+	/** The user mapper. */
 	@Mock
 	private UserMapper userMapper;
 	
+	/** The product mapper. */
 	@Mock
 	private ProductMapper productMapper;
 	
+	/** The order mapper. */
 	@Mock
 	private OrderMapper orderMapper;
 	
+	/** The sel product mapper. */
 	@Mock
 	private SelProductMapper selProductMapper;
 	
+	/** The mob user s. */
 	User userNU, mobUserS;
 	
+	/** The user list f. */
 	List<User> mobUserList, userListF;
 	
+	/** The pro list. */
 	List<Product> proList = new ArrayList<>();
 	
+	/** The user json. */
 	JSONObject userJson = new JSONObject();
 	
+	/**
+	 * Configure.
+	 *
+	 * @return the application
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Override
 	protected Application configure() {
 		return new ResourceConfig(MobileInterface.class)
 				.property("contextConfigLocation", "classpath:testContext.xml");
 	}
 	
+	/**
+	 * Sets the up child.
+	 */
 	@Before
 	public void setUpChild(){
 		MockitoAnnotations.initMocks(this);
@@ -119,9 +146,21 @@ public class MobileInterfaceTest extends JerseyTest {
 		proList.add(product3);
 	}
 	
+	/**
+	 * Tear down child.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@After
 	public void tearDownChild() { }
 
+	/**
+	 * Test register.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRegister() {
 		try {
@@ -137,6 +176,12 @@ public class MobileInterfaceTest extends JerseyTest {
 		}
 	}
 
+	/**
+	 * Test login mob success.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginMobSuccess() {
 		try {
@@ -152,6 +197,12 @@ public class MobileInterfaceTest extends JerseyTest {
 		}
 	}
 	
+	/**
+	 * Test login mob failed.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLoginMobFailed() {
 		try {
@@ -167,6 +218,12 @@ public class MobileInterfaceTest extends JerseyTest {
 		}
 	}
 
+	/**
+	 * Test logout.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testLogout() {
 		try {
@@ -181,6 +238,12 @@ public class MobileInterfaceTest extends JerseyTest {
 		}
 	}
 
+	/**
+	 * Test display menu.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayMenu() {
 		try {
@@ -195,6 +258,12 @@ public class MobileInterfaceTest extends JerseyTest {
 		}
 	}
 
+	/**
+	 * Test select product.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testSelectProduct() {
 		try {
@@ -210,6 +279,12 @@ public class MobileInterfaceTest extends JerseyTest {
 		}
 	}
 
+	/**
+	 * Test remove product.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testRemoveProduct() {
 		try {
@@ -225,6 +300,12 @@ public class MobileInterfaceTest extends JerseyTest {
 		}
 	}
 
+	/**
+	 * Test display cart.
+	 * 
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDisplayCart() {
 		try {

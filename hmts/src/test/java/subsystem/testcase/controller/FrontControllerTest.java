@@ -18,6 +18,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 
+/**
+ * The Class FrontControllerTest.
+ * @author Wenbo Wang
+ * @version 1.0, April 2016
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/web-servlet.xml",
@@ -26,16 +31,29 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class})
 public class FrontControllerTest {
 
+	/** The wac. */
 	@Autowired
 	private WebApplicationContext wac;
 
+	/** The mock mvc. */
 	MockMvc mockMvc;
 	
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		mockMvc = webAppContextSetup(wac).build();
 	}
 
+	/**
+	 * Test dispatcher login.
+	 * @author Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDispatcherLogin() {
 		try {
@@ -58,6 +76,11 @@ public class FrontControllerTest {
 		}
 	}
 
+	/**
+	 * Test dispatcher home.
+	 * @author Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDispatcherHome() {
 		try {
@@ -80,6 +103,11 @@ public class FrontControllerTest {
 		}
 	}
 	
+	/**
+	 * Test dispatcher contact.
+	 * @author Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDispatcherContact() {
 		try {
@@ -102,6 +130,11 @@ public class FrontControllerTest {
 		}
 	}
 	
+	/**
+	 * Test dispatcher team.
+	 * @author Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDispatcherTeam() {
 		try {
@@ -124,6 +157,11 @@ public class FrontControllerTest {
 		}
 	}
 	
+	/**
+	 * Test dispatcher invalid target.
+	 * @author Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDispatcherInvalidTarget() {
 		try {
@@ -142,6 +180,11 @@ public class FrontControllerTest {
 		}
 	}
 	
+	/**
+	 * Test dispatcher exception.
+	 * @author  Wenbo Wang
+	 * @version 1.0, April 2016
+	 */
 	@Test
 	public final void testDispatcherException() {
 		try {
