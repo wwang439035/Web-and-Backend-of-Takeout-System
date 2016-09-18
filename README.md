@@ -7,5 +7,5 @@ In this system there are two types of clients: web and mobile. 4-tier architectu
 
 The system is designed using Papyrus which can provide a variety of models involved in software design including use case diagram, architecture diagram, class diagram, sequence diagram, deployment diagram, state machine, OCL, etc. and can validate these models.
 
-hmts: Management website for a service provider. (Bootstrap, Spring MVC, REST, JSON, iBATIS, MySQL, JUnit, Mockito and Selenium)
-hmts_mobile: Android app for customers. (HTTP, JSON and Robotium)
+1. hmts: Management website for a service provider. (Bootstrap, Spring MVC, REST, JSON, iBATIS, MySQL, JUnit, Mockito and Selenium)
+2. hmts_mobile: Android app for customers. (HTTP, JSON and Robotium)
