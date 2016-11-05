@@ -9,3 +9,5 @@ The system is designed using Papyrus which can provide a variety of models invol
 
 1. hmts: Management website for a service provider. (Bootstrap, Spring MVC, REST, JSON, MyBatis, MySQL, JUnit, Mockito and Selenium)
 2. hmts_mobile: Android app for customers. (HTTP, JSON and Robotium)
+
+Note: mobile application is in the project named "hmts_mobile".
