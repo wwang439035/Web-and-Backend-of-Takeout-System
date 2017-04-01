@@ -1,5 +1,5 @@
-# hmts
-Project: Happy Meal Take-out System
+# Web and Backend of Takeout System
+Project: Web and Backend of Happy Meal Take-out System
 
 This mobile meal-ordering system provides services for customers to order meals online through smart phones. Restaurant managers can manage products, orders, and deliveries through the system. The system includes web-based front end, mobile app (Android), backend and MySQL database.
 
