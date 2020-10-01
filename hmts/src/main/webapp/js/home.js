@@ -3,7 +3,7 @@
  */
 
 function displayHome(){
-	var form = document.getElementById('actionform');
+	const form = document.getElementById('actionform');
 	form.action = 'front.do';
 	form.method = 'Post';
 	form.elements["mode"].value = 'dispatcher';
@@ -12,7 +12,7 @@ function displayHome(){
 }
 
 function logout(){
-	var form = document.getElementById('actionform');
+	const form = document.getElementById('actionform');
 	form.action = 'user.do';
 	form.method = 'Post';
 	form.elements["mode"].value = 'logout';
@@ -20,7 +20,7 @@ function logout(){
 }
 
 function displayProducts(){
-	var form = document.getElementById('actionform');
+	const form = document.getElementById('actionform');
 	form.action = 'operation.do';
 	form.method= 'Post';
 	form.elements["mode"].value = 'displayProducts';
@@ -45,7 +45,7 @@ function createProduct(){
 }
 
 function displayOrders(){
-	var form = document.getElementById('actionform');
+	const form = document.getElementById('actionform');
 	form.action = 'operation.do';
 	form.method= 'Post';
 	form.elements["mode"].value = 'displayOrders';
@@ -53,7 +53,7 @@ function displayOrders(){
 }
 
 function displayTeam(){
-	var form = document.getElementById('actionform');
+	const form = document.getElementById('actionform');
 	form.action = 'front.do';
 	form.method= 'Post';
 	form.elements["mode"].value = 'dispatcher';
@@ -62,7 +62,7 @@ function displayTeam(){
 }
 
 function displayContact(){
-	var form = document.getElementById('actionform');
+	const form = document.getElementById('actionform');
 	form.action = 'front.do';
 	form.method= 'Post';
 	form.elements["mode"].value = 'dispatcher';
@@ -71,7 +71,7 @@ function displayContact(){
 }
 
 function displayUsers(){
-	var form = document.getElementById('actionform');
+	const form = document.getElementById('actionform');
 	form.action = 'user.do';
 	form.method= 'Post';
 	form.elements["mode"].value = 'displayUsers';
